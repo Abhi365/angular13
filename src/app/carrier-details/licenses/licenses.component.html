@@ -1,0 +1,286 @@
+<div class="hidden-xs-down" *ngIf="mainSection">
+    <div class="divClass row">
+        <!-- <div class="row" *ngFor="let licenses of licenseTypesResult">
+            <div class="col-md-7 col-sm-7" *ngIf="licenses.BusinessTypeId === 1">
+                <h4 class="text-gray-light secondary">{{countryName}} - Life Health:</h4>
+            </div>
+            <div class="col-md-7 col-sm-7" *ngIf="licenses.BusinessTypeId === 2">
+                <h4 class="text-gray-light secondary">{{countryName}} - Property Casualty:</h4>
+            </div>
+            <div class="col-md-7 col-sm-7" *ngIf="licenses.BusinessTypeId === 3">
+                <h4 class="text-gray-light secondary">{{countryName}} - Property Casualty and Surplus Lines:</h4>
+            </div>
+        </div> -->
+        <div class="col-md-7 col-sm-7">
+            <h4 class="text-gray-light secondary">{{countryName}} - Property Casualty:</h4>
+        </div>
+        <div class="col-md-5 col-sm-5">
+            <button type="button" class="btn btn-primary btn-cd float-xs-right">Export to PDF</button>
+            <button type="button" class="btn btn-secondary btn-cd float-xs-right">Export to Excel</button>
+        </div>
+    </div>
+    <div class="divClass row">
+        <div class="col-md-8 col-sm-5">
+            <div class="row">
+                <div *ngFor="let states of licenseGradesResult; let i=index" class="col-box">
+                    <div id="{{i}}" class="box text-style" [ngClass]="{'no-license': states.LicenseGradeID == '-1','licensed': states.LicenseGradeID == '11','not-licensed':states.LicenseGradeID == '10','licensed-for-reinsurane':states.LicenseGradeID == '12','approved-for-reinsurance': states.LicenseGradeID == '13','credit-reinsurance':states.LicenseGradeID == '14','eligibleToWrite': states.LicenseGradeID == '21','registered': states.LicenseGradeID == '16','qualified': states.LicenseGradeID == '1013','eligible':false }"
+                        (click)="showView($event.target.id)" data-toggle="modal" data-target=".stateModal">
+                        {{states.CountrySubCode}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <!-- <h6> License Type Description : </h6> -->
+            <div class="table-responsive">
+                <!-- License Type Result-->
+                <table class="table">
+                    <tbody *ngFor="let licenseType of licenseTypesResult; let j=index;">
+                        <tr *ngIf="licenseType.LicenseGradeId === -1" id={{j}} (click)="showPage($event.target.id)">
+                            <td class="box-sm-layout">
+                                <div class="box-sm no-license"></div>
+                            </td>
+                            <td>No License Data </td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 10">
+                            <td class="box-sm-layout">
+                                <div class="box-sm not-licensed"></div>
+                            </td>
+                            <td>Not Licensed</td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 11">
+                            <td class="box-sm-layout">
+                                <div class="box-sm licensed"></div>
+                            </td>
+                            <td><a class="hover" (click)="showPage(j)">Licensed</a></td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 12">
+                            <td class="box-sm-layout">
+                                <div class="box-sm licensed-for-reinsurane"></div>
+                            </td>
+                            <td><a class="hover" (click)="showPage(j)">Licensed for Reinsurance Only</a></td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 13">
+                            <td class="box-sm-layout">
+                                <div class="box-sm approved-for-reinsurance"></div>
+                            </td>
+                            <td><a class="hover" (click)="showPage(j)">Approved for Reinsurance</a></td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 14">
+                            <td class="box-sm-layout">
+                                <div class="box-sm credit-reinsurance"></div>
+                            </td>
+                            <td><a class="hover" (click)="showPage(j)">Credit for Reinsurance (Other)</a></td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 21">
+                            <td class="box-sm-layout">
+                                <div class="box-sm eligibleToWrite"></div>
+                            </td>
+                            <td><a class="hover" (click)="showPage(j)">Eligible or approved to write Surplus Lines</a></td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 16">
+                            <td class="box-sm-layout">
+                                <div class="box-sm registered"></div>
+                            </td>
+                            <td><a class="hover" (click)="showPage(j)">Registered (Non-domiciled Risk Retention Groups)</a></td>
+                        </tr>
+                        <tr *ngIf="licenseType.LicenseGradeId === 1013">
+                            <td class="box-sm-layout">
+                                <div class="box-sm qualified"></div>
+                            </td>
+                            <td><a class="hover" (click)="showPage(j)">Qualified</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Logic  II Ended -->
+            </div>
+        </div>
+    </div>
+    <div class="divClass row">
+        <div class="col-md-12 col-sm-12">
+            <button type="button" class="btn btn-primary btn-cd float-xs-left" (click)="openLicenseSection()">All Licenses</button>
+        </div>
+    </div><br>
+    <div class="divClass row">
+        <hr>
+        <p> Note : Lack of information for a location does not necessarily indicate that the carrier is not licensed in that territory
+        </p>
+    </div>
+</div>
+<div class="divClass row" *ngIf="isLicensesSection">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>Company</th>
+                        <th>State</th>
+                        <th>Business Type</th>
+                        <th>License Code</th>
+                        <th>License Description</th>
+                        <th>License Authority</th>
+                    </tr>
+                    <tr>
+                        <td><a href class="hover" (click)="goBacktoLicenses()"><u> United States</u> </a></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href class="hover" (click)="goBacktoLicensesCanada()"><u>Canada </u> </a></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Northern Mariana Islands</td>
+                        <td></td>
+                        <td>Non-Life</td>
+                        <td>0</td>
+                        <td>Not Licensed</td>
+                        <td><a href="https://commerce.gov.mp/">https://commerce.gov.mp/</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <hr>
+            <p> Note : Lack of information for a location does not necessarily indicate that the carrier is not licensed in that
+                territory
+            </p>
+        </div>
+    </div>
+</div>
+<div class="modal fade stateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>{{licensevalue?.CountrySubName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a [href]="websiteLink">Licensing Authority</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a (click)="setCountryStateFlag()" data-dismiss="modal" 
+                                             class="text-primary">Carrier Search</a>
+                                            <!-- <a routerLink="/carrier-search">Carrier Search</a> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Mobile-->
+<div class="hidden-md-up hidden-sm-up">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h5 class="text-gray-light secondary">{{countryName}} - Property Casualty and Surplus Lines:</h5>
+            <div class="divClass row">
+                <div class="col-md-7 col-sm-5">
+                    <div class="row">
+                        <div *ngFor="let states of licenseGradesResult; let i=index" class="col-box">
+                            <div id="{{i}}" class="box" [ngClass]="{'no-license': states.LicenseGradeID == '-1','licensed': states.LicenseGradeID == '11','not-licensed':states.LicenseGradeID == '10','licensed-for-reinsurane':states.LicenseGradeID == '12','approved-for-reinsurance': states.LicenseGradeID == '13','credit-reinsurance':states.LicenseGradeID == '14','eligibleToWrite': states.LicenseGradeID == '21','registered': states.LicenseGradeID == '16','qualified': states.LicenseGradeID == '1013','eligible':false }"
+                                (click)="showView($event.target.id)" data-toggle="modal" data-target=".stateModal">
+                                {{states.CountrySubCode}}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button type="button" class="btn btn-primary btn-block" (click)="openLicenseSection()">All Licenses</button>
+            <hr>
+            
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <!-- License Type Result-->
+                    <table class="table">
+                        <tbody *ngFor="let licenseType of licenseTypesResult; let j=index;">
+                            
+                            <tr *ngIf="licenseType.LicenseGradeId === -1" id={{j}} (click)="showPage($event.target.id)">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm no-license"></div>
+                                </td>
+                                <td>No License Data</td>
+                            </tr>
+                            <tr *ngIf="licenseType.LicenseGradeId === 14">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm credit-reinsurance"></div>
+                                </td>
+                                <td><a class="hover" (click)="showPage(j)">Credit for Reinsurance (Other)</a></td>
+                            </tr>
+
+                            <tr *ngIf="licenseType.LicenseGradeId === 10">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm not-licensed"></div>
+                                </td>
+                                <td>Not Licensed</td>
+                            </tr>
+                            <tr *ngIf="licenseType.LicenseGradeId === 21">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm eligibleToWrite"></div>
+                                </td>
+                                <td><a class="hover" (click)="showPage(j)">Eligible or approved to write Surplus Lines</a></td>
+                            </tr>
+
+                            <tr *ngIf="licenseType.LicenseGradeId === 11">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm licensed"></div>
+                                </td>
+                                <td><a (click)="showPage(j)">Licensed</a></td>
+                            </tr>
+                            <tr *ngIf="licenseType.LicenseGradeId === 12">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm licensed-for-reinsurane"></div>
+                                </td>
+                                <td><a class="hover" (click)="showPage(j)">Licensed for Reinsurance Only</a></td>
+                            </tr>
+
+                            <tr *ngIf="licenseType.LicenseGradeId === 16">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm registered"></div>
+                                </td>
+                                <td><a class="hover" (click)="showPage(j)">Registered (Non-domiciled Risk Retention Groups)</a></td>
+                            </tr>
+                            <tr *ngIf="licenseType.LicenseGradeId === 13">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm approved-for-reinsurance"></div>
+                                </td>
+                                <td><a class="hover" (click)="showPage(j)">Approved for Reinsurance</a></td>
+                            </tr>
+
+                            <tr *ngIf="licenseType.LicenseGradeId === 1013">
+                                <td class="box-sm-layout">
+                                    <div class="box-sm qualified"></div>
+                                </td>
+                                <td><a class="hover" (click)="showPage(j)">Qualified</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--  -->
+                </div>
+            </div>
+            <div class="divClass row">
+                <p> Note : Lack of information for a location does not necessarily indicate that the carrier is not licensed in that
+                    territory
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

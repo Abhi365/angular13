@@ -1,0 +1,85 @@
+<div class="row hidden-xs-down">
+    <div class="col-md-12 col-sm-12">
+        <div class="divClass p-top-bottom">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h4 class="text-gray-light">{{selectedCarrier.LegalName}} : {{selectedCarrier.Country}}</h4>
+                    <div class="nav-container">
+                        <ul class="nav nav-horizontal nav-horizontal-light nav-pills">
+                            <!--<li class="nav-item">
+                                <a id="1" class="nav-link" [routerLink]="['/carrier-detail', {outlets: {'carrierdetail': ['general']}}]" routerLinkActive="active">General</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="2" class="nav-link" [routerLink]="['/carrier-detail', {outlets: {'carrierdetail': ['summary']}}]" routerLinkActive="active">Summary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="3" class="nav-link" [routerLink]="['/carrier-detail', {outlets: {'carrierdetail': ['financials']}}]" routerLinkActive="active">Financials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="4" class="nav-link" [routerLink]="['/carrier-detail', {outlets: {'carrierdetail': ['documents']}}]" routerLinkActive="active">Documents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="5" class="nav-link" [routerLink]="['/carrier-detail', {outlets: {'carrierdetail': ['licenses']}}]" routerLinkActive="active">Licenses</a>
+                            </li>-->
+                            <li class="nav-item">
+                                <a id="1" class="nav-link" routerLink="general" routerLinkActive="active">General</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="2" class="nav-link" routerLink="summary" routerLinkActive="active">Summary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="3" class="nav-link" routerLink="financials" routerLinkActive="active">Financials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="4" class="nav-link" routerLink="documents" routerLinkActive="active">Documents</a>
+                            </li>
+                            <li id="license-li" class="nav-item" *ngIf="country == 0">
+                                <a id="5" class="nav-link" routerLink="licenses" routerLinkActive="active">Licenses</a>
+                            </li>
+                            <li id="license-li" class="nav-item" *ngIf="country == 1" style="pointer-events:none; opacity:0.4">
+                                <a id="5" class="nav-link" routerLink="licenses" routerLinkActive="active">Licenses</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Mobile View-->
+
+
+<div class="row hidden-md-up hidden-sm-up">
+    <div class="col-md-12 col-sm-12">
+        <div class="divClass p-top-bottom">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h5 class="text-gray-light">{{selectedCarrier.LegalName}}</h5>
+                    <form>
+                        <select class="form-control" #u (change)="navigate(u.value)">
+                      <option value="general">General</option>
+                      <option value="summary">Summary</option>
+                      <option value="financials">Financials</option>
+                      <option value="documents">Documents</option>
+                      <option value="licenses">
+                        Licenses
+                      </option>
+                    </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="divClass">
+            <div>
+                <!-- <router-outlet name='carrierdetail'></router-outlet> -->
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,263 @@
+.left-pad {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.container {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.p-top-bottom {
+    padding-top: 55px;
+}
+
+.p-left-right {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.name {
+    margin-left: 25px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.cs-button-top {
+    margin-top: 31px;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .p-top-bottom {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .btn {
+        width: 100%;
+    }
+    .cs-button-top {
+        margin-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .display-4 {
+        font-size: 30px;
+        font-weight: 550;
+    }
+}
+
+.message {
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+
+.p-top-bottom {
+    padding-top: 55px;
+}
+
+.p-left-right {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.left-pad {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+p {
+    text-align: justify;
+}
+
+.card-gap {
+    margin-bottom: 35px;
+}
+
+.bg-software-gray-1 {
+    z-index: -1;
+}
+
+
+/* Keeps vertical scroll hidden */
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* CSS Styling */
+
+
+/* @media screen and (max-width: 425px) and (min-width: 320px) {
+    .container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    }
+    .col-md-1 {
+        float: left;
+        width: 8.33333%;
+    }
+} */
+
+@media screen and (max-width: 676px) {
+    .p-top-bottom {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 425px) {
+    .divClass {
+        /* margin-left: 0;
+    margin-right: 0; */
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1024px) {
+    .divClass {
+        /* margin-left: 0;
+    margin-right: 0; */
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media screen and (max-width: 2600px) and (min-width: 1500px) {
+    .divClass {
+        /* margin-left: 40px;
+    margin-right: 0px; */
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .nav-link.active:focus,
+.nav-pills .nav-link.active:hover,
+.nav-pills .nav-item.open .nav-link,
+.nav-pills .nav-item.open .nav-link:focus,
+.nav-pills .nav-item.open .nav-link:hover {
+    color: #fff;
+    cursor: pointer;
+    background-color: #009ed1;
+}
+
+.nav-horizontal .nav-link.active {
+    margin-top: -0.5rem;
+    padding-top: 1.9rem;
+    padding-bottom: 1.1rem;
+}
+
+.divClass .text-gray-light {
+    margin-bottom: 1.5rem;
+}
+
+.nav-link {
+    font-size: 16px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 14px;
+    border-left-width: 0px;
+    margin-left: 0px;
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+ul {
+    border-bottom: 1px solid #009ed1;
+}
+
+.text-gray-light {
+    color: #757575;
+}
+
+.text-gray-light.secondary {
+    color: #757575;
+    padding-top: 20px;
+}
+
+.btn-cd {
+    margin-top: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.table td {
+    border-top: 0px;
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 0px;
+    padding-top: 10px;
+}
+
+.table th.float-xs-right,
+th {
+    border-top: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #989898;
+    padding-bottom: 0px;
+    padding-top: 10px;
+}
+
+hr.main-hr {
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.table-ratings td,
+th {
+    border-top: 1px solid #eceeef;
+}
+
+.table-ratings th.no-top-border {
+    border-top: 0px solid #eceeef;
+}
+
+.table-documents th.border-top,
+.table-documents td.border-top {
+    border-top: 1px solid #eceeef;
+    padding-bottom: 10px;
+}
+
+.table-documents th.padding-bottom,
+.table-documents th.padding-bottom {
+    padding-bottom: 10px;
+}
+
+.th-black {
+    color: #000;
+}
+
+.gray-color {
+    color: #989898
+}
+
+.cs-mobile-padding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+/* -- */
+
+.extra{
+pointer-events: none !important;
+opacity: 0.4 !important;
+} 

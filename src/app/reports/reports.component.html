@@ -1,0 +1,34 @@
+<div class="divClass row p-top-bottom" *ngIf="!isReportsActive">
+    <div class="col-md-12 col-sm-12">
+        <div class="col-md-8 col-sm-12">
+            <!-- <h4> Set Reports </h4> -->
+            <div class="card card-block bg-software-gray-1 card-gap ">
+                <h4>Set Reports</h4>
+        </div>
+        <ul>
+            <li *ngFor="let report of reports;let i=index" (click)="getReport(i)">
+               <a class="hover"> {{report.ReportDescription}} </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="col-md-12 col-sm-12" *ngIf="_loggedInUser.UserRole?.Rank===1  || _loggedInUser.UserRole?.Rank===2">
+    <div class="col-md-8 col-sm-12">
+        <div class="card card-block bg-software-gray-1 card-gap ">
+            <h4> Customized Reports (MSG Only) </h4>
+    </div>
+    <ul>
+        <li *ngFor="let msdReport of MsdReports;let i=index" (click)="getMsdReport(i)">
+           <a class="hover"> {{msdReport.ReportDescription}} </a>
+        </li>
+    </ul>
+    <hr>
+</div>
+</div>
+</div>
+
+<div class="row" *ngIf="isReportsActive">
+    <div class="col-md-12 col-sm-12">
+        <iframe [src]="reportUrl" width="100%" height="750" scrolling="no"></iframe>
+    </div>
+</div>

@@ -1,0 +1,350 @@
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="divClass p-top-bottom">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h5 class="text-gray-light d-inlineblock">
+                        User Selection</h5>
+                    <h6 class="d-inline-block">Select User</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                    <input class="form-check-input" type="radio" 
+                    [value]="1"
+                     (change)="contentload()" [(ngModel)]="selectUserType" name="userType">
+                    <label></label> WTW User
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-7">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                    <input class="form-check-input" type="radio" [value]="2"
+                     (change)="contentload()" [(ngModel)]="selectUserType" name="userType">
+                    <label></label> External User
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="isSearchVisible">
+                <div class="col-md-8 col-sm-8">
+                    <div class="form-group">
+                        <div class="form-group" [ngClass]="{'has-danger':(searchTextControl.invalid && searchTextControl.touched)}">
+                            <label for="searchText">User Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="searchText" required [disabled]="!isdetailsopen" #searchTextControl="ngModel"
+                                name="searchText">
+                            <!-- pattern="^[A-Za-z0-9\-\'][A-Za-z0-9\-\' ]*" -->
+                            <small class="form-control-feedback" *ngIf="(searchTextControl.invalid && searchTextControl.touched)">
+                         Enter Username
+                        </small>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-md-1 col-sm-1"></div>-->
+                <div class="col-md-1 col-sm-1 hidden-sm-down searchbtn" *ngIf="isdetailsopen">
+                    <label></label>
+                    <button type="button" class="btn btn-primary float-xs-right p-button-top" (click)="searchload()" data-toggle="modal" data-target=".user-search-result"
+                        [disabled]="searchTextControl.invalid" name="searchButton">Search</button>
+                </div>
+                <div class="col-md-1 col-sm-1 hidden-sm-up" *ngIf="isdetailsopen">
+                    <button type="button" class="btn btn-primary btn-block p-button-top" (click)="searchload()" data-toggle="modal" data-target=".user-search-result"
+                        [disabled]="searchTextControl.invalid" name="searchButton">Search</button>
+                </div>
+                <!--<div class="col-md-1 col-sm-1">dsfs</div>-->
+                <div class="col-md-1 col-sm-1 hidden-sm-down resetbtn" *ngIf="isdetailsopen">
+                    <label></label>
+                    <button type="button" class="btn btn-secondary p-button-top float-xs-right" name="resetButton" (click)="reset()">Reset</button>
+                </div>
+                <div class="col-md-1 col-sm-1 hidden-sm-up" *ngIf="isdetailsopen">
+                    <button type="button" class="btn btn-secondary p-button-top btn-block" name="resetButton" (click)="reset()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6"></div>
+</div>
+<div class="row" *ngIf="showDetails">
+    <div class="col-md-12 col-sm-6">
+        <div class="divClass">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="divClass">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h5 class="text-gray-light d-inlineblock">
+                        User Details</h5>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label>User Login</label>
+                        <p>{{selectedUser.UserLogin}}</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <label for="role">Role</label>
+                            </div>
+                            <div class="col-md-8 col-sm-8">
+                                <select class="form-control nice-small" name="selectedUserRole" (ngModelChange)="onSelectedUserRoleChange($event)" [(ngModel)]="selectedUser.UserRole.Rank"
+                                    #selectedRole="ngModel">
+                                        <option value="0"></option>
+                                    <option *ngFor="let role of rolesList" [value]="role.Rank">
+                                        {{role.RoleDescription}}
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- <div class="col-md-4 col-sm-4">{{selectedUser.UserId}} {{noAccountToRemove && (selectedUser.UserId!==null && selectedUser.UserId!==undefined)}}</div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-5" *ngIf="!showRoles">
+                        <button type="button" class="btn-size btn btn-secondary p-button-top hidden-sm-down float-xs-right" (click)="cancel()">
+                           Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block p-button-top hidden-sm-up" [disabled]="selectedRole.value==0" (click)="saverecord()">Save</button>
+
+                    </div>
+                    <div class="col-md-4 col-sm-4" *ngIf="!showRoles">
+                        <button type="button" class="btn-size btn btn-primary float-xs-left p-button-top hidden-sm-down save-pad" (click)="saverecord()"
+                            [disabled]="selectedUser.UserRole.Rank==0">Save</button>
+                        <button type="button" class="btn btn-secondary btn-block p-button-top hidden-sm-up" (click)="cancel()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6"></div>
+</div>
+<div class="row" *ngIf="showRoles">
+    <div class="col-md-12 col-sm-6">
+        <div class="divClass">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divClass row" *ngIf="isSuccess">
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isSuccess=!isSuccess">
+        <span aria-hidden="true">&times;</span>
+      </button>
+                <span class="alert-text"> {{message}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divClass row" *ngIf="isError">
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isError=!isError">
+        <span aria-hidden="true">&times;</span>
+      </button>
+                <span class="alert-text">{{message}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="divClass">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h5 class="text-gray-light d-inlineblock">
+                        User Roles</h5>
+
+                    <!--{{accounts|json}}-->
+                </div>
+
+                <div class="col-md-7 col-sm-8">
+                    <div class="form-group">
+                        <label for="client">Select Client</label>
+                        <select class="form-control nice-small clients-control" #accountsControl name="accountsControl">
+                            <option *ngFor="let account of accounts"
+                             [value]="account.Id">{{account.PartyName}} ({{account.PartyId}})</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <label></label><button type="button" class="btn btn-primary  p-button-top-new pad-btn hidden-sm-down"
+                        (click)="selectadd(accountsControl.value)" name="addButton" [disabled]="accounts.length==0">Add</button></div>
+                <!-- <div class="col-md-8 col-sm-8"></div> -->
+                <div class="col-md-2 col-sm-4">
+                    <button type="button" class="btn btn-primary  p-button-top-new  hidden-sm-down" (click)="selectremove()" name="removeButton"
+                        [disabled]="noAccountToRemove">Remove</button>
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <label></label><button type="button" class="btn btn-primary  p-button-top-new pad-btn hidden-md-up btn-width"
+                        (click)="selectadd(accountsControl.value)" name="addButton" [disabled]="accounts.length==0">Add</button></div>
+                <div class="col-md-8 col-sm-8"></div>
+                <div class="col-md-4 col-sm-4">
+                    <button type="button" class="btn btn-primary p-button-top-new  hidden-md-up btn-width" (click)="selectremove()" name="removeButton"
+                        [disabled]="noAccountToRemove">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="divClass p-top-bottom-2">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 p-h5">
+                    <h5 class="text-gray-light d-inlineblock">
+                        <!--{{selectedUser.ClientList.length}}-->
+                        <!--{{selectedUser|json}}-->
+                    </h5>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label for="clientcopy">Client Name</label>
+                        <select multiple class="form-control" [(ngModel)]="removeSelectedAccounts" name="selctedUserClients">
+                          <ng-container *ngFor="let account of selectedUserAccountList" >
+                            <option [value]="account.Id" *ngIf="account.ActionIndicator">
+                                  {{account.PartyName}} ({{account.PartyId}})
+                                </option>
+                          </ng-container>
+                        </select>
+                        <sub>To select multiple clients, hold down the CTRL key</sub>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <button type="button" class="btn btn-secondary p-button-top  hidden-sm-down float-xs-left" (click)="cancel()" name="cancelButton">Cancel</button>
+                    <!--
+                        <button type="button" class="btn btn-primary p-button-top btn-block hidden-sm-up" (click)="saverecord()" name="saveButton"
+                        [disabled]="selectedUser.AccountList.length>0 && selectedUserAccountList.length==0">Save</button>
+                    -->
+                    <button type="button" class="btn btn-primary p-button-top btn-block hidden-sm-up" (click)="saverecord()" name="saveButton"
+                        [disabled]="noAccountToRemove && !(selectedUser.UserId!==null && selectedUser.UserId!==undefined)">Save</button>
+                </div>
+
+                <div class="col-md-8 col-sm-8">
+                    <!--
+                        <button type="button" class="btn btn-primary float-xs-left p-button-top hidden-sm-down" (click)="saverecord()" name="saveButton"
+                        [disabled]="selectedUser.AccountList.length>0 && selectedUserAccountList.length==0">Save</button>
+                        -->
+                    <button type="button" class="btn btn-primary float-xs-left p-button-top hidden-sm-down" (click)="saverecord()" name="saveButton"
+                        [disabled]="noAccountToRemove && !(selectedUser.UserId!==null && selectedUser.UserId!==undefined)">Save</button>
+                    <button type="button" class="btn btn-secondary btn-block p-button-top hidden-sm-up" (click)="cancel()" name="cancelButton">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-2 col-sm-2">
+            <button type="button" class="btn btn-primary float-xs-left p-button-top hidden-sm-down" (click)="saverecord()">Save</button>
+            <button type="button" class="btn btn-primary btn-block p-button-top hidden-sm-up" (click)="saverecord()">Save</button></div>
+
+        <div class="col-md-10 col-sm-10">
+            <button type="button" class="btn btn-secondary p-button-top  hidden-sm-down float-xs-left">
+                        Cancel
+                    </button>
+            <button type="button" class="btn btn-secondary p-button-top btn-block hidden-sm-up">
+                        Cancel
+                    </button>
+        </div>-->
+    </div>
+</div>
+
+<div class="modal fade user-search-result" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">User Search Results</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" hidden>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" name="exampleRadios" [value]=""
+                            [(ngModel)]="selectedSearchIndex" #selectedSearchIndexControl="ngModel"
+                            required>
+                            <label>{{selectedSearchIndexControl.invalid}}</label>
+                        </label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isUserDataLoaded">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="divClass p-bottom">
+                            <div class="table-responsive table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Select</th>
+                                            <!-- <th width="10%">Status</th> -->
+                                            <th width="10%">Surname</th>
+                                            <th width="10%">Forename</th>
+                                            <th width="10%">Initials</th>
+                                            <th width="30%">Email</th>
+                                            <th width="10%">Country</th>
+                                            <!-- <th width="10%">Location</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of userSearchResult;let i=index" (click)="selectedSearchIndex=i">
+                                            <td>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" name="exampleRadios" [value]="i"
+                                                         [(ngModel)]="selectedSearchIndex" #selectedSearchIndexControl="ngModel"
+                                                         required>
+                                                        <label></label>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <!-- <td>
+                                                <p [ngSwitch]="user.UserStatus">
+                                                    <span *ngSwitchCase="1">Online</span>
+                                                    <span *ngSwitchCase="2">Offline</span>
+                                                </p>
+                                            </td> -->
+                                            <td>{{user.Surname}}</td>
+                                            <td>{{user.Forename}}</td>
+                                            <td>{{user.Initials}}</td>
+                                            <td>{{user.EmailAddress}}</td>
+                                            <td>{{user.Country}}</td>
+                                            <!-- <td>{{user.Location}}</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="!isUserDataLoaded">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="container p-bottom">
+                            <img src="/assets/images/AnimationLoading.gif" alt="Loading" class="mx-auto d-block" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="userSearchResult?.length==0 && isUserDataLoaded">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="container p-bottom text-center">
+                            <p class="text-center">There is no search result Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary hidden-sm-down" data-dismiss="modal" (click)="reset()" name="resetButton">Reset</button>
+                <button type="button" class="btn btn-primary p-button-top hidden-sm-up btn-block" data-dismiss="modal" (click)="selectload()"
+                    [disabled]="selectedSearchIndexControl.invalid" name="selectButton">Select</button>
+                <button type="button" class="btn btn-primary ml-1 hidden-sm-down" data-dismiss="modal" (click)="selectload()" [disabled]="selectedSearchIndexControl.invalid"
+                    name="selectButton">Select</button>
+                <button type="button" class="btn btn-secondary p-button-top hidden-sm-up btn-block" data-dismiss="modal" (click)="reset()"
+                    name="resetButton">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>

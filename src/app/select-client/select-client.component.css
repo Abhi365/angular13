@@ -1,0 +1,64 @@
+.p-top-bottom {
+    padding-top: 55px;
+    padding-bottom: 15px;
+}
+
+.drop-down{
+    width:100%;
+}
+
+.cs-button-top {
+    margin-top: 31px;
+}
+
+.drop-button-padding{
+    padding-bottom: 12px;
+}
+
+
+@media screen and (max-width: 470px){
+    .p-top-bottom {
+        padding-top: 25px;
+        padding-bottom: 5px;
+    }
+    .btn {
+        width : 100%
+    }
+
+        .cs-button-top{
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+
+    .drop-down{
+        width:100%;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 425px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1024px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 40px;
+    padding-right: 40px;
+    }
+}
+
+@media screen and (max-width: 2600px) and (min-width: 1500px) {
+    .divClass {
+    /* margin-left: 40px;
+    margin-right: 0px; */
+     padding-left: 40px;
+    padding-right: 40px; 
+    }
+}

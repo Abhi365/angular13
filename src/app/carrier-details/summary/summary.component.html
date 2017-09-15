@@ -1,0 +1,125 @@
+<div class="hidden-xs-down">
+    <div class="row">
+        <div class="col-md-5 col-sm-5">
+            <h4 class="text-gray-light secondary">Contact Details</h4>
+        </div>
+        <div class="col-md-7 col-sm-7">
+            <a href={{this.pdfUrl}} target="_blank"><button type="button" class="btn btn-tertiary btn-cd float-xs-right">Export to PDF</button></a>
+
+            <a href={{this.excelUrl}} target="_blank">  <button type="button" class="btn btn-tertiary btn-cd float-xs-right">Export to Excel</button> </a>
+
+            <button type="button" class="btn btn-tertiary btn-cd float-xs-right">Use in Email Notification</button>
+        </div>
+        <div class="col-md-10 col-sm-12">
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <button type="button" class="btn btn-tertiary btn-cd float-xs-right">Summary PDF</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-md-5 cs-summary-padding-top">
+            <form>
+                <label for="ref">Client Reference</label>
+                <div class="row">
+                    <div class="col-md-10 col-sm-12 cs-summary-padding">
+                        <input type="text" class="form-control" id="clientRef" [(ngModel)]='summarytext' name='summarytext'>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12">
+                        <button type="button" class="btn btn-primary float-xs-left button-width" (click)="saveData()">Save</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="row reduced-p-top-bottom">
+        <div class="col-md-10 col-sm-12 iframeClass">
+            <iframe [src]="reportUrl" width="105%" [height]="selectedHeight1" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-sm-12 iframeClass">
+            <iframe [src]="AMGraphUrl" width="105%" [height]="selectedHeight2" scrolling="no"></iframe>
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <button type="button" class="btn btn-primary button-width" name="amReport" (click)="hideAMReport()">{{valueAM}} A.M Best</button>
+
+        </div>
+        <div class="col-md-10 col-sm-12 iframeClass">
+            <iframe [src]="SnPGraphUrl" width="105%" [height]="selectedHeight3" scrolling="no"></iframe>
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <button type="button" class="btn btn-primary button-width" name="snpreport" (click)="hideSnPReport()">{{valueSnP}} S&P</button>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row p-bottom">
+        <div class="col-md-12 col-sm-12 disclaimer" #disclaimerText>
+        </div>
+    </div>
+</div>
+
+<!--Mobile-->
+<div class="hidden-md-up hidden-sm-up">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h5 class="text-gray-light secondary">Contact Details</h5>
+            <form class="form-layout">
+                <label for="ref">Client Reference</label>
+                <div class="row">
+                    <div class="col-md-10 col-sm-12 col-xs-12 cs-summary-padding">
+                        <input type="text" class="form-control" id="clientRef" [(ngModel)]='summarytext' name='summarytext'>
+                    </div>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        <button type="button" class="btn btn-primary float-xs-left btn-width" (click)="saveData()">Save</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-sm-12 iframeClass">
+            <iframe [src]="reportUrl" width="105%" [height]="selectedHeight1" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+        <div class="divClass p-bottom">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
+                        <button type="button" class="btn btn-primary cs-button-top btn-width" name="amReport" (click)="hideAMReport()">{{valueAM}} A.M Best Report</button>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <button type="button" class="btn btn-primary cs-button-top btn-width" name="snpReport" (click)="hideSnPReport()">{{valueSnP}} S&P Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-sm-12 iframeClass">
+            <iframe [src]="AMGraphUrl" width="105%" [height]="selectedHeight2" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-sm-12 iframeClass">
+            <iframe [src]="SnPGraphUrl" width="105%" [height]="selectedHeight3" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row p-bottom">
+        <div class="col-md-12 col-sm-12 disclaimer" #disclaimerText>
+        </div>
+    </div>
+</div>

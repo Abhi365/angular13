@@ -1,0 +1,438 @@
+<div class="row">
+	<div class="col-md-6 col-sm-6">
+		<div class="divClass p-bottom">
+			<!-- Initial Radio Buttons -->
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<div class="col-md-4 col-sm-6  hidden-sm-down">
+						<div class="form-group">
+							<button type="button" class="btn btn-primary cs-button-top" name="createButton" (click)="loadModal()" data-toggle="modal"
+							 data-target=".searchModal">Create a Client</button>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-12 hidden-md-up">
+						<div class="form-group">
+							<button type="button" class="btn btn-primary cs-button-top btn-width" name="createButton" (click)="loadModal()" data-toggle="modal"
+							 data-target=".searchModal">Create a Client</button>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6  hidden-sm-down">
+						<div class="form-group">
+							<button type="button" class="btn btn-primary cs-button-top btn-ln" name="editButton" (click)="editFields()">Edit a Client</button>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-12 hidden-md-up">
+						<div class="form-group">
+							<button type="button" class="btn btn-primary cs-button-top btn-width" name="editButton" (click)="editFields()">Edit a Client</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit Data Content -->
+	<div class="col-md-9 col-sm-9">
+		<div class="row">
+			<div class="col-md-12 col-md-12" *ngIf="loadData">
+				<!-- Choose a Client -->
+				<div class="divClass p-bottom">
+					<div class="row" *ngIf="editClient">
+						<div class="col-md-8 col-sm-8">
+							<div class="form-group drop-down">
+								<label for="selectclient">Choose a client</label>
+								<select class="form-control nice-small hidden-sm-down" [(ngModel)]="selectedPartyIndex" #clients>
+									<option *ngFor="let party of clientDropdown;let i=index" [value]="i">{{party.PartyName}} ({{party.PartyId}})
+										(<span *ngIf="party.ConsultancyStatus===0">Non-Consultancy</span><span *ngIf="party.ConsultancyStatus===1">Consultancy</span>)</option>
+									</select>
+								<select class="form-control nice-small hidden-sm-up" id="selectclient-mob" [(ngModel)]="selectedPartyIndex" #clients>
+									<option *ngFor="let party of clientDropdown;let i=index" [value]="i">{{party.PartyName}} ({{party.PartyId}})
+										(<span *ngIf="party.ConsultancyStatus===0">Non-Consultancy</span><span *ngIf="party.ConsultancyStatus===1">Consultancy</span>)
+									</option>
+									</select>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3">
+							<button type="button" class="btn btn-primary cs-button-top btn-ln" (click)="loadClientData()">Select Client</button>
+						</div>
+					</div>
+					<div class="row" *ngIf="!editClient">
+						<div class="col-md-8 col-sm-8">
+							<div class="form-group drop-down">
+								<h5>	Client Name :</h5>
+								<p>{{account?.PartyName}}</p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-md-12" *ngIf="loadAdditonalData">
+				<div class="col-md-12 col-sm-12">
+					<div class="col-md-12 col-sm-6">
+						<div class="divClass">
+							<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<hr>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divClass div-top-bottom">
+						<h5> Consultancy Status </h5>
+						<div class="row left-padding">
+							<div class="col-md-4 col-sm-4" *ngIf="_loggedInUser.UserRole?.Rank!==3">
+								<div class="form-check">
+									<label class="form-check-label">
+											<input class="form-check-input" type="radio"
+								name="consultancyStatus" [value]="1" [(ngModel)]="account.ConsultancyStatus">
+								<label></label> Consultancy
+									</label>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<div class="form-check">
+									<label class="form-check-label">
+								<input class="form-check-input" type="radio" 
+								name="consultancyStatus" [value]="0" checked [(ngModel)]="account.ConsultancyStatus">
+								<label></label> Non-Consultancy
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Access Status -->
+				<div class="col-md-12 col-sm-12" *ngIf="_loggedInUser.UserRole?.Rank===1">
+					<div class="col-md-12 col-sm-6">
+						<div class="divClass">
+							<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<hr>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divClass div-top-bottom">
+						<h5> Access </h5>
+						<div class="row left-padding">
+							<div class="col-md-4 col-sm-4">
+								<div class="form-check">
+									<label class="form-check-label">
+								<input class="form-check-input" type="radio"
+								name="allAdmins" [value]="1" checked [(ngModel)]="account.AccessLevel">
+								<label></label> All Admins
+									</label>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<div class="form-check">
+									<label class="form-check-label">
+								<input class="form-check-input" type="radio" 
+								name="allAdmins" [value]="0" [(ngModel)]="account.AccessLevel">
+								<label></label> Super Users Only
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Associated Carriers Status -->
+				<div class="col-md-12 col-sm-12">
+					<div class="col-md-12 col-sm-6">
+						<div class="divClass">
+							<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<hr>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divClass div-top-bottom">
+						<h5> Associated Carriers </h5>
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<div class="form-check">
+									<label class="form-check-label"> All Carriers
+									</label>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-4" *ngIf="_loggedInUser.UserRole?.Rank!==3">
+								<div class="form-check">
+									<label class="form-check-label">
+								<input class="form-check-input" type="radio" 
+								name="ra1" id="yes" [value]="true" [(ngModel)]="account.AssociateAllCarriers">
+								<label for="yes"></label> Yes
+									</label>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<div class="form-check">
+									<label class="form-check-label">
+								<input class="form-check-input" type="radio" 
+								name="ra1" id="no" [value]="false"  [(ngModel)]="account.AssociateAllCarriers" checked>
+								<label for="no"></label>No
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divClass div-top-bottom">
+						<div class="row">
+							<div class="col-md-8 col-sm-8">
+								<div class="form-group drop-down">
+									<label for="selectclient">Choose a client</label>
+									<select class="form-control nice-small hidden-sm-down" id="selectclient" [(ngModel)]="importClientId">
+									<option *ngFor="let party of clientDropdown" [value]="party.Id">{{party.PartyName}}({{party.PartyId}})
+										(<span *ngIf="party.ConsultancyStatus===0">Non-Consultancy</span><span *ngIf="party.ConsultancyStatus===1">Consultancy</span>)</option>
+									</select>
+									<select class="form-control nice-small hidden-sm-up" id="selectclient-mob" [(ngModel)]="importClientId">
+										<option *ngFor="let party of clientDropdown" [value]="party.Id">{{party.PartyName}}({{party.PartyId}})
+										(<span *ngIf="party.ConsultancyStatus===0">Non-Consultancy</span><span *ngIf="party.ConsultancyStatus===1">Consultancy</span>)</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-3">
+								<button type="button" class="btn btn-primary cs-button-top btn-ln" name="importButton" (click)="getSelectedClientAssociatedCarriers()">Import</button>
+							</div>
+							<div class="col-md-1 col-sm-1"></div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-8 col-sm-8">
+								<button type="button" class="btn btn-secondary cs-button-top btn-ln" name="carrierSearch" (click)="redirectToCarrierSearch()">Carrier Search</button>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-md-12 col-sm-12 div-top-bottom">
+						<div class="divClass">
+							<div class="table-responsive table-striped">
+								<table class="table">
+									<thead>
+										<tr>
+											<th width="20%">Legal Name</th>
+											<th width="20%">WTW Code</th>
+											<th width="20%">Comments</th>
+											<th width="10%">Default</th>
+											<th width="10%">Delete</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let carrier of associatedCarriersList; let i=index">
+											<td>{{carrier.LegalName}}</td>
+											<td>{{carrier.WillisCode}}</td>
+											<td><input type="text" [(ngModel)]="carrier.Comments"></td>
+											<td>
+												<div class="form-check">
+													<label class="form-check-label-table">
+														<input type="checkbox" [(ngModel)]="carrier.IsDefault">
+														  <label></label>
+													</label>
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<label class="form-check-label-table">
+													<input type="checkbox" [(ngModel)]="carrier.IsDelete">
+													</label>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<hr>
+							<div class="col-md-8 col-sm-8"></div>
+							<div class="col-md-2 col-sm-2 hidden-sm-down">
+								<button type="button" class="btn btn-secondary float-xs-right" name="cancelButton" (click)="cancel()">Cancel</button>
+							</div>
+							<div class="col-md-2 col-sm-2 hidden-md-up">
+								<button type="button" class="btn btn-primary p-button-top btn-block hidden-sm-down" (click)="saverecord()" name="saveButton">
+									Save</button>
+							</div>
+							<div class="col-md-2 col-sm-2 hidden-md-up">
+								<button type="button" class="btn btn-secondary float-xs-right extra-top" name="cancelButton" (click)="cancel()">Cancel</button>
+							</div>
+							<div class="col-md-2 col-sm-2 hidden-sm-down">
+								<button type="button" class="btn btn-primary float-xs-right btn-ln1 hidden-sm-down" (click)="saverecord()" name="saveButton">Save</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<!-- End -->
+	<div class="row">
+		<div class="col-md-12 col-sm-9">
+			<div class="divClass p-bottom">
+				<div class="row" *ngIf="isSuccess">
+					<div class="col-md-12">
+						<div class="alert alert-success alert-dismissible fade in" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isSuccess=!saveSuccess">
+						<span aria-hidden="true">&times;</span>
+					</button>
+							<span class="alert-text">Client Details saved successfully</span>
+						</div>
+					</div>
+				</div>
+				<div class="row" *ngIf="isError">
+					<div class="col-md-12">
+						<div class="alert alert-warning alert-dismissible fade in" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isError=!isError">
+								  <span aria-hidden="true">&times;</span>
+								</button>
+							<span class="alert-text">{{message}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- First Modal -->
+	<div class="modal fade searchModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header hidden-sm-dowm">
+					<button type="button" class="close" data-dismiss="modal" arialabel="Close"> <span ariahidden="true">&times;</span> </button>
+					<h4 class="modal-title">Client / Subscription Search</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-11 col-sm-11">
+							Enter the full or partial name of the company that you are searching for e.g. Enter ‘Axa’ (and optionally Country or Entity
+							type).
+						</div>
+					</div>
+					<div class="row">
+						<!-- Dropdown and input-->
+						<div class="col-md-12 col-sm-12 hidden-sm-down">
+							<div class="row top-margin">
+								<div class="col-lg-1"></div>
+								<div class="col-lg-10">
+									<div class="input-group" [ngClass]="{'has-danger' : (searchTextControllg.invalid && searchTextControllg.touched)}">
+										<div class="input-group-btn btn-dropdown-grp">
+											<select class="form-control nice-btn" name="searchCriteria" [(ngModel)]="searchCriteria" niceSelect>
+												<option value="1">Containing</option>
+												<option value="2">Beginning With</option>
+											</select>
+										</div>
+										<!-- pattern="^[A-Za-z][A-Za-z ]*"-->
+										<input type="text" class="form-control" name="searchText" aria-label="Text input with dropdown button" [(ngModel)]="searchText"
+										 required #searchTextControllg="ngModel">
+									</div>
+
+									<small class="form-control-feedback" style="color:#a31a1a;" *ngIf="(searchTextControllg.invalid && searchTextControllg.touched)"> Enter search criteria</small>
+								</div>
+								<div class="col-lg-1"></div>
+							</div>
+						</div>
+						<!-- Dropdown and input mobile-->
+						<div class="col-md-12 col-sm-12 hidden-sm-up">
+							<div class="row margin-row">
+								<div class="col-lg-1 col-sm-10"></div>
+								<div class="col-lg-10 col-sm-10">
+									<select class="form-control nice-btn nice-small" name="searchCriteria" [(ngModel)]="searchCriteria" niceSelect>
+									<option value="1">Containing</option>
+									<option value="2">Beginning Search</option>
+									</select>
+								</div>
+								<div class="col-lg-1 col-sm-10"></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-1 col-sm-10"></div>
+								<div class="col-lg-10 col-sm-10 form-group" [ngClass]="{'has-danger' : (searchTextControl.invalid && searchTextControl.touched)}">
+									<input type="text" class="form-control" name="searchText" aria-label="Text input with dropdown button" [(ngModel)]="searchText"
+									 required #searchTextControl="ngModel" required>
+									<small class="form-control-feedback" *ngIf="(searchTextControl.invalid && searchTextControl.touched)"> Enter search criteria</small>
+								</div>
+								<div class="col-lg-1 col-sm-10"></div>
+							</div>
+						</div>
+
+						<!-- Radio Button-->
+						<!--<div class="col-md-12 col-sm-12">
+							<div class="row top-margin">
+								<div class="col-md-1 col-sm-1"></div>
+								<div class="col-md-3 col-sm-3">
+									<h6> Entity Status </h6>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<div class="col-md-6 col-sm-6">
+										<div class="form-check">
+											<label class="form-check-label">
+										<input class="form-check-input" type="radio" name="entityStatus" value="1" checked [(ngModel)]="entityStatus">
+										<label></label>Active</label>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<div class="form-check">
+											<label class="form-check-label">
+										<input class="form-check-input" type="radio" name="entityStatus" value="2" [(ngModel)]="entityStatus">
+										<label></label>Inactive</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-1 col-sm-1"></div>
+							</div>
+						</div>-->
+						<!-- Buttons -->
+						<div class="col-md-12 col-sm-12 hidden-sm-down">
+							<div class="col-md-5 col-sm-5"></div>
+							<div class="col-md-2 col-sm-2">
+								<button type="button" class="btn btn-secondary float-right cs-button-top b-bottom" name="resetButton" (click)="resetSearchModal()">Reset</button>
+							</div>
+							<div class="col-md-2 col-sm-2">
+								<button type="button" class="btn btn-primary float-right cs-button-top" (click)="showTable()" [disabled]="searchTextControl.invalid"
+								 name="searchButton">Search a Company</button>
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12 hidden-md-up">
+							<div class="col-md-5 col-sm-5"></div>
+							<div class="col-md-2 col-sm-2">
+								<button type="button" class="btn btn-primary float-right cs-button-top b-bottom" (click)="showTable()" [disabled]="searchTextControl.invalid">Search a Company</button>
+							</div>
+							<div class="col-md-2 col-sm-2">
+								<button type="button" class="btn btn-secondary float-right cs-button-top b-bottom" name="resetButton" (click)="resetSearchModal()">Reset</button>
+
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12" *ngIf="isSearchingClient">
+							<div class="container p-bottom">
+								<img src="/assets/images/AnimationLoading.gif" alt="Loading" class="mx-auto d-block" />
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12" *ngIf="isviewTable">
+							<div class="col-md-12 col-sm-12">
+								<div class="table-responsive table-striped">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Business Name</th>
+												<th>Party Id</th>
+												<th>Territory</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let client of pageResults">
+												<!--<tr *ngFor="let client of clientSearchResult| slice:0:3; let i=index">-->
+												<td><a href (click)="loadFields(client)" data-dismiss="modal">{{client.Name}}</a> </td>
+												<td>{{client.PartyId}}</td>
+												<td>{{client.Country}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- Pagination -->
+								<app-pagination-comp [dataSet]="clientSearchResult" [pageSize]="10" (getPageResult)="getPageResult($event)"></app-pagination-comp>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="divClass p-top-bottom">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group drop-down">
+                        <label for="selectclient">Please select the client you wish to update</label>
+                        <select class="form-control hidden-sm-down" [(ngModel)]="selectedIndex" name="accounts">
+                            <option></option>
+                            <option *ngFor="let account of accountList; let i=index" [value]="i">
+                                {{account.PartyName}} ({{account.PartyId}})
+                            </option>
+                </select>
+                        <select class="form-control hidden-sm-up" [(ngModel)]="selectedIndex" name="accounts">
+                <option *ngFor="let account of accountList; let i=index" [value]="i">
+                    {{account.PartyName}} ({{account.PartyId}})
+                </option>
+            </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary cs-button-top"
+                             (click)="selectClient()" [disabled]="selectedIndex===undefined">Select Client</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12" *ngIf="isCancelActive">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-secondary cs-button-top" (click)="cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

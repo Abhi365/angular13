@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Willis Towers Watson</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script type='text/javascript' src="./assets/scripts/toolkit.js"></script>
+    <script type='text/javascript' src="./assets/scripts/countries.js"></script>
+    <script type='text/javascript' src="./assets/scripts/richTextEditor.js"></script>
+    <!--<script src="./assets/ckeditor/ckeditor.js"></script>-->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!--<script src="./assets/scripts/init.js"></script>-->
+    <script src="./assets/scripts/jquery-nice-select-1.1.0/js/jquery.nice-select.js"></script>
+    <link rel="stylesheet" href="./assets/scripts/jquery-nice-select-1.1.0/css/nice-select.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Dont' include this code into build -->
+    <script>
+        //window['url'] == 'http://localhost:2775/';
+       // window.apiUrl='http://wtw-mks-uks-dev-web-api.azurewebsites.net/';
+        window.apiUrl='http://localhost:2775/';
+        window.reportsUrl='http://wtw-mks-uks-dev-reports.azurewebsites.net/';
+         window.summaryUrl='http://wtw-mks-uks-dev-reports.azurewebsites.net/';
+         window.formAMGraphUrl = 'http://wtw-mks-uks-dev-reports.azurewebsites.net/';
+         window.formSnPGraphUrl= 'http://wtw-mks-uks-dev-reports.azurewebsites.net/';
+        console.log('Window URL printed');
+        console.log(window.apiUrl); 
+    </script>
+
+</head>
+<!--<script type='text/javascript'>
+	populateCountries("country", "state");
+</script>-->
+
+<body>
+    <app-root>Loading...</app-root>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+.btn-wdth{
+    width: 163px;
+}
+.left-pad {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.p-top-bottom {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.p-left-right {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.text-gray-light {
+    color: #757575;
+}
+
+.cs-button-top {
+    margin-top: 31px;
+}
+
+.p-button-top-primary {
+    margin-top: 31px;
+    margin-bottom: 16px;
+}
+
+.cs-button-top {
+    margin-top: 24px;
+}
+
+.p-h5 {
+    margin-bottom: 22px;
+}
+
+.pad-btn {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.cs-input-margin {
+    margin-top: 7px;
+}
+
+.notify-mob-top-pad {
+    padding-top: 20px !important;
+}
+
+.notify-mob-top-margin {
+    margin-top: 20px;
+}
+
+.notify-mob-top-button-margin {
+    margin-top: 25px;
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+.form-check-label-table
+{
+    padding-left: 0rem;
+}
+.form-check-label{
+    padding-left: 0rem;
+}
+.form-check-label-tableOne{
+    padding-left:1.25rem;
+}
+
+.table th,
+.table td {
+    padding-left: 0rem;
+    vertical-align: middle;
+    border-top: 1px solid #eceeef;
+    padding: 0.2rem;
+}
+.drop-down{
+    width:100%;
+}
+
+@media screen and (max-width: 470px){
+    .form-check-label{
+    padding-left: 1.2rem;
+    }
+    .check-place{
+        width:75px;
+    }
+}
+
+/* for checkbx */
+input[type="checkbox"] {
+display: none;
+}
+
+label {
+cursor: pointer;
+}
+input[type="checkbox"] + label:before {
+    border: 0.5px solid #E2E2E2;
+    border-radius: 2.5px;
+    content: "\00a0";
+    display: inline-block;
+    font: 16px/1em;
+    /*height: 25px;*/
+    margin: 0 .25em 0 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 20px;
+}
+
+input[type="checkbox"]:checked + label:before {
+background: #00a0d2;
+color: #FFFFFF;
+content: "\2714";
+text-align: center;
+font-weight: 800;
+}
+
+input[type="checkbox"]:checked + label:after {
+font-weight: 800;
+}
+
+/* checkbox css end */
+
+/* CSS for Radio Buttons */
+input[type="radio"]{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-progress-appearance: none;
+   display: none;
+}
+
+input[type="radio"] + label:before {
+
+border-radius: 10px;
+background: #e0e0e1;
+content: "\00a0";
+display: inline-block;
+font-size: 10px;
+margin: .25em .25em 0 0;
+padding: 0;
+vertical-align: middle;
+width: 15px;
+}
+
+input[type="radio"]:checked + label:before {
+background: #00a0d2;
+color: #FFFFFF;
+content: "\26AB";
+text-align: center;
+}
+
+/* -- */
+.btn-padding{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.dd-padding{
+  margin-bottom: 30px!important;
+
+}
+/*For alignment with buttons & dropdown*/
+.md-margin{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.btnOne{
+    width:85px;
+    height:38px;
+}
+.drop-button-padding{
+    padding-bottom: 12px;
+}
+/*hr {   
+    transform:rotate(90deg);
+    -o-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+}*/
+div.vertical-line{
+    border-left: 1px solid #f4f4f4;
+    height: 370px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 0.5px;
+}
+
+.form-check-label-tableOne {
+    padding-left: 0.3rem;
+}
+
+
+/* CSS Styling */
+@media screen and (max-width: 425px) and (min-width: 320px) {
+    .container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    }
+    .col-md-1 {
+        float: left;
+        width: 8.33333%;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 425px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1024px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 40px;
+    padding-right: 40px;
+    }
+}
+
+@media screen and (max-width: 2600px) and (min-width: 1500px) {
+    .divClass {
+    /* margin-left: 40px;
+    margin-right: 0px; */
+     padding-left: 40px;
+    padding-right: 40px; 
+    }
+}
+/* -- */

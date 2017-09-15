@@ -1,0 +1,11 @@
+/*Pagination CSS */
+.page-link {
+    background-color: white;
+    cursor: pointer;
+    /*border: 1px solid #cacaca;*/
+}
+
+.page-link:hover {
+    color: black;
+    background-color: white;
+}

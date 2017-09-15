@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="32px" viewBox="0 0 25 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Bitmap</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect x="-3" y="4" width="31" height="24" id="rect-1"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bitmap" transform="translate(12.500000, 16.000000) rotate(90.000000) translate(-12.500000, -16.000000) ">
+            <image x="-3" y="4" width="31" height="24" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAYCAYAAAACqyaBAAAABGdBTUEAA1teXP8meAAAAiJJREFUSA21lc9LG0EUx7+zWWl7sFC8G49FSOIlB6H4H/QHPVSpYH6IJAihIAH1JhRakGJRD42H7CaUXKIX6Vk89phtop71Lwi0zaWJO77ZZIYlzQqR2YXN/Hr5fua9N/MW0PVYl7OwL5LjyBnjGAfalp0XMNyfYO4ZrObrQLuhBT1wg80D/ClpT8JABXbzzRBn5JCNnH3IpO1sgRmf1V85f4VM4ocaj+jo8VwI37S/gGNbMRirotJ6p8YjOvo8l+K2UwCL7FIaHveneArp+HeAcWkiW32eS8Wb9jfqbtI7gLFDWL+W5bK/1e+5VLcba0DkAAz9CDDkkYofyWXRhgfnnKHaek8MCrnH6YK7eWTmLAEWj/6w93UJRzlOx2sU/TRN/aN3gm5DCdVmTpmgdhWVg9DaXu8lnYAD0h9E2i3iur1votu7Dg0aKGx8QvRZJ7ywB4K9BUYpeGJiwpy5307D6v9h36awH4Z32uWeLWeRvKxSth/R4etR7otUdvfFcrhw23lL4BPFcfk6sglRhLwnvJx7RcagqzZwUBQZH1jQTW8LOn/q9Qj+Pl8lZIlkRWQ7FO4PSCXKwxj9nvfBXwdgwdugsqqqmn8D+nK+c24iOlUkX+U3vU2O55GO1f1Af1+f59NTBSrWH5U4R+4+sLDTA7dbArxH10icod9U15eQiR+rjQR09Bw497aBiPHHY7hYQTZ2GsALadpuJFFpLoyjfgd8AoVlJLdwKQAAAABJRU5ErkJggg=="></image>
+            <use fill="#8A8A8A" fill-rule="evenodd" xlink:href="#rect-1"></use>
+        </g>
+    </g>
+</svg>

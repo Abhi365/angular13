@@ -1,0 +1,41 @@
+<div class="">
+    <div class="row p-top">
+        <div class="col-md-3 col-sm-12" *ngFor="let subReport of subReports; let i=index">
+            <!--
+                <button class="btn btn-link btn-secondary" (click)="formReportUrl(i)">{{subReport.name}}</button>
+                -->
+            <a (click)="formReportUrl(i)" class="text-primary hand-pointer"
+            [ngClass]="{'text-primary':i===selectedIndex,'text-secondary':i!==selectedIndex}">{{subReport.name}}</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-5">
+            <h4 class="text-gray-light secondary">{{selectedReport}}</h4>
+        </div>
+        <div class="col-md-7 col-sm-7">
+          <a href={{this.pdfUrl}} target="_blank"> <button type="button" class="btn btn-tertiary btn-cd float-xs-right">Export to PDF</button></a>
+
+          <a href={{this.excelUrl}} target="_blank"> <button type="button" class="btn btn-tertiary btn-cd float-xs-right">Export to Excel</button></a>
+          <button type="button" class="btn btn-tertiary btn-cd float-xs-right">Summary PDF</button>
+            <!-- <button type="button" class="btn btn-secondary btn-cd float-xs-right">Use in Email Notification</button> -->
+        </div>
+        <!-- <div class="col-md-10 col-sm-12">
+            </div>
+        <div class="col-md-2 col-sm-12">
+            
+        </div> -->
+    </div>
+    <div class="col-md-12 col-sm-12 iframeClass">
+            <!-- <iframe [src]="reportUrl" height="100%" width="100%" scrolling="no"></iframe> -->
+             <iframe [src]="reportUrl" width="100%" [height]="selectedHeight" scrolling="no"></iframe> 
+        </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row p-bottom">
+        <div class="col-md-12 col-sm-12 disclaimer" #disclaimerText>
+        </div>
+    </div>
+</div>

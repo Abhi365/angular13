@@ -1,0 +1,278 @@
+.drop-button-padding{
+    padding-bottom: 12px;
+}
+.col-md-6{
+  padding-left: 0px;
+}
+.modal-p-top-bottom{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.table thead th {
+  vertical-align: top;
+}
+.left-pad {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.shift-left{
+    padding-left: 30px;
+  }
+.container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+/*.btn{
+  width:85px;
+  height:38px;
+}*/
+.btnOne{
+  width:200px;
+}
+.text-center{
+  text-align: center;
+}
+
+.p-top-bottom {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.p-top{
+  padding-top: 15px;
+}
+
+/*hr{*/
+  /*margin:0px;*/
+/*}*/
+
+.bold{
+  font-weight: bold;
+}
+
+.text-gray-light {
+  color: #757575;
+}
+
+select {
+  height: 268px;
+}
+
+.table th,
+td {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.row-left-margin{
+  margin-left: -22px;
+}
+.pading{
+  padding-left:80px;
+}
+.padingOne{
+  padding-left:105px;
+}
+
+@media screen and (max-width: 1273px){
+  .hide-1240-down{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 470px){
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .table-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .btn {
+    width : 100%;
+  }
+  .p-button-top {
+    margin-top: 7px;
+  }
+  .pading{
+    padding-left:12px;
+  }
+  .padingOne{
+    padding-left:12px;
+  }
+  .col-md-1, .col-md-2{
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  .col-md-7{
+    padding-right: 3px;
+  }
+  .shift-left{
+    padding-left: 0px;
+  }
+  .extra-left{
+    padding-left: 20px;
+  }
+}
+
+.modal-dialog {
+  min-height: -webkit-calc(100vh - 60px);
+  min-height: -moz-calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: auto;
+}
+@media (max-width: 768px) {
+  .modal-dialog {
+    min-height: -webkit-calc(100vh - 20px);
+    min-height: -moz-calc(100vh - 20px);
+    min-height: calc(100vh - 20px);
+  }
+}
+
+/* css for checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+}
+input[type="checkbox"] + label:before {
+  border: 1px solid #E2E2E2;
+  border-radius: 2.5px;
+  content: "\00a0";
+  display: inline-block;
+  font: 16px/1em;
+  /*height: 25px;*/
+  margin: 0 .25em 0 0;
+  padding: 0;
+  vertical-align: top;
+  width: 20px;
+}
+input[type="checkbox"]:checked + label:before {
+  background: #00a0d2;
+  color: #FFFFFF;
+  content: "\2714";
+  text-align: center;
+  font-weight: 800;
+}
+
+input[type="checkbox"]:checked + label:after {
+  font-weight: 800;
+}
+
+/*--*/
+
+.modal-end-body{
+  padding: 0 0 0 0 ;
+}
+.modal-text{
+  padding-top: 15px;
+  font-size: 16px;
+}
+.modal-header .close {
+  margin-top:0px;
+}
+.modal-footer-padding{
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+.top-padding{
+  padding-top: 15px;
+}
+.modal-md{
+  width:380px;
+}
+.left-padding{
+  padding-left: 10px;
+}
+.bottom-zero-padding{
+  padding-bottom: 0px!important;
+}
+.top-zero-padding{
+  padding-top: 0px!important;
+}
+.btn-margin-top{
+  margin-top: 20px;
+}
+.hr-padding{
+  padding-left: 55px!important;
+  padding-right: 55px!important;
+}
+.hr-padding-mobile{
+  padding-left: 22px!important;
+  padding-right: 22px!important;
+}
+
+/* CSS Styling */
+/* @media screen and (max-width: 425px) and (min-width: 320px) {
+    .container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    }
+    .col-md-1 {
+        float: left;
+        width: 8.33333%;
+    }
+} */
+.p-top-bottom {
+    padding-top: 55px;
+    padding-bottom: 15px;
+}
+@media screen and (max-width: 1024px) and (min-width: 425px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+  .shift-left{
+  margin-left: -10px;
+}
+}
+@media screen and (max-width: 1050px) and (min-width: 700px) {
+  .shift-left{
+  margin-left: 40px;
+}
+
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1024px) {
+    .divClass {
+    padding-left: 40px;
+    padding-right: 40px;
+    }
+  .shift-left{
+  margin-left: -30px;
+}
+}
+
+@media screen and (max-width: 2600px) and (min-width: 1500px) {
+    .divClass {
+    /* margin-left: 40px;
+    margin-right: 0px; */
+     padding-left: 40px;
+    padding-right: 40px; 
+    }
+}
+/* -- */

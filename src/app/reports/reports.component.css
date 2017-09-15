@@ -1,0 +1,64 @@
+
+/* CSS Styling */
+/* @media screen and (max-width: 425px) and (min-width: 320px) {
+    .container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    }
+    .col-md-1 {
+        float: left;
+        width: 8.33333%;
+    }
+} */
+
+a:hover {
+    color: #00455b;
+    text-decoration: underline;
+}
+
+a.hover:hover {
+    color: #00455b;
+    text-decoration: underline;
+}
+.card-title {
+font-size: 18px;
+font-weight: bold;
+padding-bottom: 0.5rem;
+}
+.p-top-bottom {
+    padding-top: 55px;
+    padding-bottom: 15px;
+}
+@media screen and (max-width: 1024px) and (min-width: 425px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1024px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 40px;
+    padding-right: 40px;
+    }
+}
+
+@media screen and (max-width: 2600px) and (min-width: 1500px) {
+    .divClass {
+    /* margin-left: 40px;
+    margin-right: 0px; */
+     padding-left: 40px;
+    padding-right: 40px; 
+    }
+}
+
+ul{
+    cursor: pointer;
+}
+/* -- */

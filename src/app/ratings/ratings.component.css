@@ -1,0 +1,77 @@
+.left-pad {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.table-container {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.p-top-bottom {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.p-left-right {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.note-mobile {
+padding: 10px; 
+}
+
+@media screen and (max-width: 470px){
+.left-pad {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.table-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.p-top-bottom {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.p-left-right {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+}
+
+table {
+  width: 100%;
+}
+
+thead, tbody, tr, td, th {
+  display: block;
+}
+
+tbody {
+  overflow-y: auto;
+  height: 1400px;
+}
+
+tbody td, thead th {
+  float: left;
+  width: 25%;
+}
+
+tr:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  visibility: hidden;
+}
+::-webkit-scrollbar {
+display: none;
+}

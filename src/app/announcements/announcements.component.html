@@ -1,0 +1,295 @@
+﻿<div class="row" *ngIf="isTableVisible">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="divClass p-top-bottom">
+      <label class="d-inline-block">List of Announcements</label>
+      <div class="table-responsive table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th width="15%">Title</th>
+              <th width="40%">Description</th>
+              <th width="15%">Expiry Date</th>
+              <th width="15%">Edit</th>
+              <th width="15%">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let announcement of announcementResult; let i=index">
+              <td>{{announcement.Title}}</td>
+              <td>{{announcement.Body}}</td>
+              <td>{{announcement.ExpiryDate | date:'dd/MM/yyyy'}}</td>
+              <td name="editButton">
+                <a (click)="EditAnnouncement(announcement.Id)" class="text-primary">Edit</a>
+              </td>
+              <td name="deleteButton">
+                <a class="text-primary" (click)="DeleteAnnouncement(announcement.Id)">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11 col-sm-11">
+    <button type="button" name="createButton" class="btn btn-primary p-button-top float-xs-right" (click)="displayinputDetails()">
+      Create
+    </button>
+  </div>
+</div>
+
+<div class="row" *ngIf="isCreateAnnouncementVisible">
+  <div class="col-md-12 col-sm-12">
+    <div class="divClass p-top-bottom">
+      <div class="col-md-12 col-sm-12">
+        <h5>Update Announcement</h5>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" [(ngModel)]="title" placeholder="">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6"></div>
+      <div class="col-md-12 col-sm-12">
+        <!--<div class="form-group">
+          <label for="desc">Description</label>
+          <textarea class="form-control" id="desc" rows="20" [(ngModel)]="description" placeholder=""></textarea>
+        </div>-->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <div id="richTextEditor">
+            <button id="bold"><img src="/assets/images/bold.png" /></button>
+            <button id="italic"><img src="/assets/images/italics.png" /></button>
+            <button id="underline"><img src="/assets/images/underline.png" /></button>
+            <button id="justifyCenter"><img src="/assets/images/center-justify.png" /></button>
+            <button id="justifyLeft"><img src="/assets/images/left-justify.png" /></button>
+            <button id="justifyRight"><img src="/assets/images/right-justify.png" /></button>
+            <button id="insertUnorderedList"><img src="/assets/images/bullets.png" /></button>
+            <button id="insertOrderedList"><img src="/assets/images/numbers.png" /></button>
+            <button id="subscript"><img src="/assets/images/subScript.png" /></button>
+            <button id="superscript"><img src="/assets/images/superScript.png" /></button>
+            <button id="createLink"><img src="/assets/images/link.png" /></button>
+            <button id="htmlCode"><img src="/assets/images/htmlCode.png" /></button>
+          </div>
+          <div id="export-content">
+            <div id="editor" contenteditable="true"></div>
+          </div>
+          <!-- <textarea class="form-control" id="editor" rows="24" placeholder="Type HERE">{{text}}</textarea> -->
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-5" [ngClass]="{'disabled':isEditingAnnouncement}">
+        <div class="form-group">
+          <label for="example-text-input">Link to Document</label>
+          <input type="text" class="form-control" id="example-text-input" [(ngModel)]="docLink" placeholder="">
+        </div>
+      </div>
+      <div class="col-md-1 col-sm-1 hidden-sm-down" [ngClass]="{'disabled':isEditingAnnouncement}">
+        <label></label><button type="button" class="btn btn-secondary float-xs-left p-button-top">Reset</button>
+      </div>
+      <div class="col-md-6 col-sm-6 hidden-sm-down" [ngClass]="{'disabled':isEditingAnnouncement}">
+        <label></label>
+        <div class="col-md-2 col-sm-2">
+          <button type="button" class="btn btn-primary p-button-top-primary">Search</button>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6 hidden-md-up" [ngClass]="{'disabled':isEditingAnnouncement}">
+        <label></label>
+        <div class="col-md-2 col-sm-12">
+          <button type="button" class="btn btn-primary p-button-top-primary">Search</button>
+        </div>
+      </div>
+      <div class="col-md-1 col-sm-1 hidden-md-up" *ngIf="iseditTable">
+        <label></label><button type="button" class="btn btn-secondary float-xs-left p-button-top">Reset</button>
+      </div>
+      <div class="col-md-5 col-sm-5"  [ngClass]="{'disabled':isEditingAnnouncement}">
+        <div class="form-group">
+          <label for="extlink">External Link</label>
+          <input type="text" class="form-control" id="extlink" [(ngModel)]="extLink">
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6 "></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-6 col-sm-6 p-button-top">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label" for="name">Expiry Date</label>
+                    <!-- <input type="date" class="form-control" name="expiryDate" id="expiryDate" [(ngModel)]="expiryDate"> -->
+                    <datepicker [selectedDate]="expiryDate" datepickerId="expiryDate"  placeholder="expiryDate"  name="expiryDate" (dateChange)="dateChange($event)">
+                </datepicker>
+                  </div>
+                </div>
+                <!-- Text input-->
+                <div class="col-md-6" [ngClass]="{'disabled':isEditingAnnouncement}">
+                  <div class="form-group">
+                    <label class="control-label" for="email">All Clients</label>
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4">
+                        <!--<div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio"
+                                   name="exampleRadios"id="Yes" value="Yes">
+                            Yes
+                          </label>
+                        </div>-->
+
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <!-- <input class="form-check-input" type="radio" name="assignUser" value="Yes" (change)="setAssignUser('Yes')" id="assignUserYes"> -->
+                          <input class="form-check-input" type="radio" name="assignUser" [value]="true" [(ngModel)]="allClientsFlag" id="assignUserYes"
+                           (change)="setAssignUser('Yes')">
+                            <label for="assignUserYes"></label> Yes
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                        <!--<div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio"
+                                   name="exampleRadios1"id="No" value="No" checked>
+                            No
+                          </label>
+                        </div>-->
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <!-- <input class="form-check-input" type="radio" name="assignUser" value="No" (change)="setAssignUser('No')" checked id="assignUserNo"> -->
+                            <input class="form-check-input" type="radio" name="assignUser" [value]="false"  [(ngModel)]="allClientsFlag" checked id="assignUserNo"
+                             (change)="setAssignUser('No')">
+                            <label for="assignUserNo"></label> No
+                          </label>
+
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6"></div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!allClientsFlag" [ngClass]="{'disabled':isEditingAnnouncement}">
+        <div class="col-md-12 col-sm-12">
+          <div class="col-md-5 col-sm-5">
+            <div class="form-group">
+              <label for="avail">Available clients</label>
+              <select multiple class="form-control" [(ngModel)]="selectedClients">
+                 <option *ngFor="let account of availableclientList"
+                [value]="account.Id">{{account.PartyName}} ({{account.PartyId}})</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- for desktop -->
+          <div class="col-md-1 col-sm-1 hidden-sm-down">
+            <div class="col-md-12 col-sm-12 add-button">
+              <img src="./assets/images/arrow_primary.png" width="40" height="30" class="d-inline-block" name="addClientNameButton" (click)="addClientName()">
+              <!--<button type="button" class="btn btn-primary" (click)="add(cl)">Add</button>  -->
+            </div>
+            <div class="col-md-12 col-sm-12 remove-button">
+              <img src="./assets/images/arrow_secondary.png" width="40" height="30" class="d-inline-block" name="removeClientNameButton"
+                (click)="removeClientName()">
+              <!--<button type="button" class="btn btn-secondary">Remove</button>-->
+            </div>
+          </div>
+          <!-- For mobile -->
+          <div class="col-md-1 col-sm-1 hidden-md-up">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-3 col-xs-3"></div>
+                <div class="col-sm-3 col-xs-3">
+                  <img src="./assets/images/remove-up.PNG" width="30" height="40" class="d-inline-block">
+                </div>
+                <div class="col-sm-3 col-xs-3">
+                  <img src="./assets/images/add-down.PNG" width="30" height="40" class="d-inline-block">
+                </div>
+                <div class="col-sm-3 col-xs-3"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="assign">Assigned Clients</label>
+              <select multiple class="form-control" [(ngModel)]="removeSelectedAccounts">
+                  <option *ngFor="let account of selectedUserAccountList"  [value]="account.Id">{{account.PartyName}} ({{account.PartyId}})</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row hidden-sm-down">
+        <div class="col-md-12 col-sm-12">
+          <div class="col-md-9 col-sm-9">
+            <button type="button" class="btnOne btn btn-secondary cs-button-top" [disabled]="isDisabled">Email Announcement</button>
+          </div>
+          <div class="col-md-1 col-sm-1">
+            <button type="button" class="btn btn-secondary float-xs-right  custom" (click)="getHomepage()" name="exitButton">Exit</button>
+          </div>
+          <div class="col-md-1 col-sm-1">
+            <button type="button" class="btn btn-secondary float-xs-right  custom" (click)="getHomepage()" name="cancelButton">Cancel</button>
+          </div>
+          <div class="col-md-1 col-sm-1">
+            <button type="button" class="btn btn-primary float-xs-right custom" (click)="saverecord()" name="saveButton">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row hidden-md-up">
+        <div class="col-md-1 col-sm-1">
+          <label></label>
+          <button type="button" class="btn btn-primary float-xs-left" (click)="saverecord()" name="saveButton">Save</button>
+        </div>
+        <div class="col-md-1 col-sm-1">
+          <label></label><button type="button" class="btn btn-secondary float-xs-right p-button-top">Email Announcement</button>
+        </div>
+        <div class="col-md-1 col-sm-1">
+          <label></label><button type="button" class="btn btn-secondary float-xs-right p-button-top">Cancel</button>
+        </div>
+        <div class="col-md-1 col-sm-1">
+          <label></label><button type="button" class="btn btn-secondary float-xs-right p-button-top">Exit</button>
+        </div>
+      </div>
+      <div class="row" *ngIf="isSuccess">
+        <div class="col-md-12">
+          <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!saveSuccess">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <span class="alert-text">Success!</span>Announcement saved successfully
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="isError">
+        <div class="col-md-12">
+          <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!isError">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <span class="alert-text">Error!</span> {{message}}
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="isAlert">
+        <div class="col-md-12">
+          <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!isAlert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <span class="alert-text">{{message}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>

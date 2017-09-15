@@ -1,0 +1,132 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="divClass p-top">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4 doc-style" [ngClass]="{'doc-active' : firstview}" (click)="shuffleview('1')">By Document</div>
+                <div class="col-md-4 col-sm-4 col-xs-4 doc-style" [ngClass]="{'doc-active' : secondview}" (click)="shuffleview('2')">By Client</div>
+                <div class="col-md-4 col-sm-4 col-xs-4 doc-style" [ngClass]="{'doc-active' : thirdview}" (click)="shuffleview('3')">By User</div>
+            </div>
+            <div class="row" *ngIf="firstview">
+                <div class="col-md-12 col-sm-12 doc-margin-top">
+                    <h5>Document Access</h5>
+                    <hr>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <div class="form-group">
+                        <label for="document">Document</label>
+                        <div class="input-group">
+                            <input type="text" id="document" class="form-control">
+                            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectclient">Client</label>
+                        <select class="form-control nice-small hidden-sm-down" id="selectclient" appNiceSelect>
+              <option value="1211 6th Avenue Propert Owner LLC (283906)"></option>
+              <option value="1212 6th Avenue Propert Owner LLC (283906)">Lorem</option>
+            </select>
+                        <select class="form-control nice-small hidden-sm-up" id="selectclient-mob" appNiceSelect>
+              <option value="1211 6th Avenue Propert Owner LLC (283906)"></option>
+              <option value="1212 6th Avenue Propert Owner LLC (283906)">Lorem</option>
+            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user">User</label>
+                        <div class="input-group">
+                            <input type="text" id="user" class="form-control">
+                            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9 col-sm-9 col-xs-6">
+                            <button type="button" class="btn btn-secondary float-xs-left">Add Client</button>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            <button type="button" class="btn btn-secondary float-xs-right">Add User</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-7"></div>
+
+                <div class="col-md-12 col-sm-12">
+                    <hr>
+                    <h5>Clients</h5>
+                    <hr>
+                    <h5>Users</h5>
+                </div>
+            </div>
+            <!--secondview-->
+            <div class="row" *ngIf="secondview">
+                <div class="col-md-12 col-sm-12 doc-margin-top">
+                    <h5>Document Access</h5>
+                    <hr>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <div class="form-group">
+                        <label for="selectclient">Client</label>
+                        <select class="form-control nice-small hidden-sm-down" id="selectclient" appNiceSelect>
+              <option value="1211 6th Avenue Propert Owner LLC (283906)"></option>
+              <option value="1212 6th Avenue Propert Owner LLC (283906)">Lorem</option>
+            </select>
+                        <select class="form-control nice-small hidden-sm-up" id="selectclient-mob" appNiceSelect>
+              <option value="1211 6th Avenue Propert Owner LLC (283906)"></option>
+              <option value="1212 6th Avenue Propert Owner LLC (283906)">Lorem</option>
+            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="document">Document</label>
+                        <div class="input-group">
+                            <input type="text" id="document" class="form-control">
+                            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="button" class="btn btn-secondary float-xs-left">Add Document</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-7"></div>
+
+                <div class="col-md-12 col-sm-12">
+                    <hr>
+                    <h5>Documents</h5>
+                </div>
+            </div>
+            <!--thirdview-->
+            <div class="row" *ngIf="thirdview">
+                <div class="col-md-12 col-sm-12 doc-margin-top">
+                    <h5>Document Access</h5>
+                    <hr>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <div class="form-group">
+                        <label for="user">User</label>
+                        <div class="input-group">
+                            <input type="text" id="user" class="form-control">
+                            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="document">Document</label>
+                        <div class="input-group">
+                            <input type="text" id="document" class="form-control">
+                            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="button" class="btn btn-secondary float-xs-left">Add Document</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-7"></div>
+
+                <div class="col-md-12 col-sm-12">
+                    <hr>
+                    <h5>Documents</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

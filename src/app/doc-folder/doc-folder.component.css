@@ -1,0 +1,132 @@
+.drop-button-padding{
+    padding-bottom: 12px;
+}
+.left-pad {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.container {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.p-top-bottom {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.p-left-right {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.text-gray-light {
+    color: #757575;
+}
+
+.p-button-top {
+    margin-top: 7px;
+}
+
+.p-button-top-new {
+    margin-top: 31px;
+}
+
+.p-h5 {
+    margin-bottom: 22px;
+}
+
+.pad-btn {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+.cs-button-top {
+    margin-top: 31px;
+}
+.p-top {
+                padding-top: 55px;
+}
+
+.doc-padding{
+  padding-top: 20px;
+}
+
+.cs-input-top {
+    margin-top: 31px;
+}
+
+.cs-input-top-mob {
+    padding-top: 40px;
+}
+
+
+
+/* CSS for Radio Buttons */
+input[type="radio"]{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-progress-appearance: none;
+   display: none;
+}
+
+input[type="radio"] + label:before {
+
+border-radius: 10px;
+background: #e0e0e1;
+content: "\00a0";
+display: inline-block;
+font-size: 10px;
+margin: .25em .25em 0 0;
+padding: 0;
+vertical-align: top;
+width: 15px;
+}
+
+input[type="radio"]:checked + label:before {
+background: #00a0d2;
+color: #FFFFFF;
+content: "\26AB";
+text-align: center;
+}
+
+/* -- */
+@media screen and (max-width: 530px){
+    .btn {
+        width: 100%;
+    }
+}
+
+
+/* CSS Styling */
+
+
+@media screen and (max-width: 1024px) and (min-width: 425px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1024px) {
+    .divClass {
+    /* margin-left: 0;
+    margin-right: 0; */
+    padding-left: 40px;
+    padding-right: 40px;
+    }
+}
+
+@media screen and (max-width: 2600px) and (min-width: 1500px) {
+    .divClass {
+    /* margin-left: 40px;
+    margin-right: 0px; */
+     padding-left: 40px;
+    padding-right: 40px; 
+    }
+}
+/* -- */

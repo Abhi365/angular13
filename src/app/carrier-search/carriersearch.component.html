@@ -1,0 +1,528 @@
+<!--<div class="row">
+  <div class="bg-software-gray-1 p-1 col-md-12 col-sm-12 col-xs-12">
+    <h2 class="display-1 d-inlineblock left-pad">
+      Carrier Search</h2>
+  </div>
+</div>-->
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="divClass p-top-bottom">
+            <div class="row" *ngIf="!redirectToClientMaintenanceFlag">
+                <div class="col-md-10 col-sm-10">
+                    <div class="form-group drop-down">
+                        <p class="cs-button-top"><b>{{selectedAccount.PartyName}} ({{selectedAccount.PartyId}})</b></p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <button type="button" class="btn btn-primary cs-button-top " (click)="selectclient()">Select Client</button>
+                </div>
+            </div>
+            <div *ngIf="isClientSelected">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label>Legal Name</label>
+                            <select class="form-control nice-small" id="legalname" [(ngModel)]="searchRequest.LegalNameOperator">
+                <option value="1">Containing</option>
+                <option value="2">Beginning</option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                        <div class="form-group">
+                            <label></label>
+                            <input type="text" class="form-control cs-input-margin " id="legalname2" placeholder="" [(ngModel)]="searchRequest.LegalName">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label>Code</label>
+                                    <select class="form-control nice-small" id="code" [(ngModel)]="searchRequest.CodeSelection" (ngModelChange)="changeCode($event)">
+                    <option value=""></option>
+                    <option value="willis">WTW</option>
+                    <option value="lors">LORS</option>
+                    <option value="naic">NAIC</option>
+                    <option value="fein">FEIN/AIIN</option>
+                    <option value="clientref">Client Ref</option>
+                  </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label></label>
+                                    <input type="text" class="form-control cs-input-margin " id="code2" placeholder="" [(ngModel)]="searchRequest.Code">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 push-md-4 push-sm-4">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="form-control nice-small" id="category" [(ngModel)]="searchRequest.CategoryId" (ngModelChange)="changeCategory($event)">
+                <option value=""></option>
+                <option value="Lorem">Lorem</option>
+              </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control nice-small" name="countries" [(ngModel)]="searchRequest.CountryId" (ngModelChange)="getState($event)">
+                <option value=""></option>
+                <option *ngFor="let country of countries"
+                 [value]="country.CountryId">{{country.CountryName}}</option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control nice-small" [(ngModel)]="searchRequest.CountrySubId" (ngModelChange)="onChangeState($event)">
+                <option value=""></option>
+                <option *ngFor="let state of states"
+                 [value]="state.CountrySubId">{{state.CountrySubCodePart}}</option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label>Favorites</label>
+                            <select class="form-control nice-small" id="favorites1" [(ngModel)]="searchRequest.CarrierFavoriteId" (ngModelChange)="onFavourites($event)">
+                <option value=""></option>
+                <option value="Lorem">Lorem</option>
+              </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div id="accordion-example" class="accordion" role="tablist" ariamultiselectable="true">
+                            <div class="card">
+                                <a id="headingOne" class="card-header collapsed" role="tab" data-toggle="collapse" data-parent="#accordion-example" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" *ngIf="!isClientReader">
+                  Advanced Search
+                  <span class="accordion-icon"></span>
+                </a>
+                                <div id="collapseOne" class="collapse" role="tabpanel" arialabelledby="headingOne" [ngClass]="{'in':isClientReader}">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Ownership  </label>
+                                                        <!-- <select class="frm-control" id="ownership" [(ngModel)]="searchRequest.GroupCodeId">                            
+                              <option value=""></option>
+                              <option *ngFor="let ownership of ownerships"
+                            [value]="ownership.GroupCodeId">{{ownership.GroupName}}</option>
+                            </select> -->
+                                                        <select class="form-control" id="ownership" [(ngModel)]="searchRequest.GroupCodeId" (ngModelChange)="onOwnershipChange($event)">                            
+                              <option value=""></option>
+                              <option *ngFor="let ownership of ownerships"
+                            [value]="ownership.GroupCodeId">{{ownership.GroupName}}</option>
+                              <!--   -->
+                            </select></div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Company Type</label>
+                                                        <select class="form-control nice-small" id="state" [(ngModel)]="searchRequest.CompanyTypeId" (ngModelChange)="onCompanyTypeChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let companyType of companyTypes" 
+                              [value]="companyType.CompanyTypeId">{{companyType.CompanyTypeDesc}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Operating Category</label>
+                                                        <select class="form-control nice-small" id="operatingCategory" [(ngModel)]="searchRequest.CarrierStatusId" (ngModelChange)="onOperatingChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let operatingCategory of operatingCategories" 
+                              [value]="operatingCategory.CarrierStatusId">{{operatingCategory.CarrierStatusDesc}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Rating Agency</label>
+                                                        <select class="form-control nice-small" id="ratingag" [(ngModel)]="searchRequest.RatingAgencyId" (ngModelChange)="getRatingAgencyScales($event)">
+                              <option value=""></option>
+                              <option *ngFor="let ratingAgency of ratingAgencies" 
+                              [value]="ratingAgency.RatingAgencyId">{{ratingAgency.RatingAgencyName}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Rating Range</label>
+                                                                <select class="form-control nice-small" id="ratingra" [(ngModel)]="searchRequest.RatingAgencyOperator">
+                                  <option value="0">=</option>
+                                  <option value="1">>=</option>
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Rating</label>
+                                                                <select class="form-control nice-small" id="rating" [(ngModel)]="searchRequest.RatingRange" (ngModelChange)="onRatingRangeChange($event)">
+                                  <option value=""></option>
+                              <option *ngFor="let ratingAgencyScale of ratingAgencyScales" 
+                              [value]="ratingAgencyScale.RatingPercentage">{{ratingAgencyScale.RatingAgencyScales}}</option>
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4"></div>
+                                            </div>
+                                            <div class="row" *ngIf="!isClientReader">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Approval Status</label>
+                                                        <select class="form-control nice-small" id="approvalstat" [(ngModel)]="searchRequest.ApprovalStatusId" (ngModelChange)="onApprovalStatusChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let approval of approvalStatus"
+                               [value]="approval.ApprovalStatusId">{{approval.ApprovalStatusDesc}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-sm-8">
+                                                    <div class="form-group">
+                                                        <label>Restriction</label>
+                                                        <select class="form-control nice-small" id="restrict" [(ngModel)]="searchRequest.ResctrictionCodeId" (ngModelChange)="onRestrictionChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let restriction of restrictions"
+                               [value]="restriction.RestrictionCodeId">{{restriction.RestrictionDesc}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngIf="!isClientReader">
+                                                <div class="col-md-8 col-sm-8">
+                                                    <div class="form-group">
+                                                        <label>Qualifier</label>
+                                                        <select class="form-control nice-small" id="qualifier" [(ngModel)]="searchRequest.QualifierId" (ngModelChange)="onQualifierChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let qualifier of qualifiers" 
+                              [value]="qualifier.QualifierId">{{qualifier.CarrierQualifierDesc}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Business Unit</label>
+                                                        <select class="form-control nice-small" id="bu" [(ngModel)]="searchRequest.BusinessUnitId" (ngModelChange)="onBUChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let businessUnit of businessUnits" 
+                              [value]="businessUnit.BusinessUnitId">{{businessUnit.BusinessUnitName}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngIf="!isClientReader">
+                                                <div class="col-md-2 col-sm-2">
+                                                    <div class="form-group">
+                                                        <label>TOBA</label>
+                                                        <select class="form-control nice-small" id="toba" [(ngModel)]="searchRequest.TobaIndicator" (ngModelChange)="onTobaChange($event)">
+                              <option value=""></option>
+                              <option value="2">Yes</option>
+                              <option value="1">No</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Legal Entity</label>
+                                                        <select class="form-control nice-small" [(ngModel)]="searchRequest.LegalEntity" (ngModelChange)="onLEChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let legalEntity of legalEntities" 
+                              [value]="legalEntity.EntityId">{{legalEntity.LegalEntityName}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Licence Country </label>
+                                                        <select class="form-control nice-small" name="licenceCountries" [(ngModel)]="searchRequest.LicenseCountryId" (ngModelChange)="licenceCountryChange($event)">
+                              <option value=""></option>
+                              <option *ngFor="let country of licenceCountries"
+                               [value]="country.CountryId">{{country.CountryName}}</option>
+                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>License State</label>
+                                                                <select class="form-control nice-small" id="licensestate" [(ngModel)]="searchRequest.LicenseStateId" (ngModelChange)="onLicenseStateChange($event)">
+                                  <option value=""></option>
+                                  <option *ngFor="let state of licenceStates"
+                                    [value]="state.CountrySubId">{{state.CountrySubCodePart}}</option>
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>License Type</label>
+                                                                <select class="form-control nice-small" id="licensetype" [(ngModel)]="searchRequest.LicenseCodeId">
+                                  <option value=""></option>
+                                  <option *ngFor="let licenceType of licenceTypes"
+                                    [value]="licenceType.LicenceGradeId">{{licenceType.Description}}</option>
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row hidden-sm-down">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="col-md-11 col-sm-11">
+                            <button type="button" class="btnOne btn btn-secondary float-xs-right cs-button-top" (click)="reset2()">Reset</button>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            <button type="button" class="btnOne btn btn-primary float-xs-right cs-button-top" (click)="findresults()">Find</button>
+                        </div> 
+                        <!-- <div class="btn-group float-xs-right">
+                            <button type="button" class="btn btn-secondary" style="margin:6px;" (click)="reset()">Reset</button>
+                            <button type="button" class="btn btn-primary"  style="margin:6px;" (click)="findresults()">Find</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="row hidden-md-up">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="col-md-11 col-sm-11">
+                            <button type="button" class="btnOne btn btn-primary float-xs-right cs-button-top" (click)="findresults()">Find</button>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            <button type="button" class="btnOne btn btn-secondary float-xs-right cs-button-top" (click)="reset2()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="redirectToClientMaintenanceFlag && gridResult.length!==0">
+                    <div class="col-md-12">
+                        <button type="button" class="btn" (click)="redirectToPrevious('client-maintenance')">Use in Client Maintenance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divClass p-top-bottom">
+            <div class="row" *ngIf="isTableSelected && !redirectToClientMaintenanceFlag">
+                <div class="col-md-12  col-sm-12">
+                    <hr>
+                    <p class=" display-3 d-inlineblock">
+                        Search Results
+                        <sub *ngIf="gridResult.length<1000">(Showing {{gridResult.length}} results. Only carriers which the user is authorised to access are displayed within search results.)</sub>
+                        <sub *ngIf="gridResult.length==1000 || gridResult.length>1000">The search results exceed 1000 records, Please refine the search criteria.</sub>
+                    </p>
+                    <div class="btn-group" role="group" arialabel="Button group with nested dropdown" *ngIf="gridResult.length!==0">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [disabled]="gridResult.length===0">
+                                        Download
+                                    <span class="caret"></span>
+                                </button>
+
+                            <div class="dropdown-menu" arialabelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#" *ngIf="gridResult.length!==0">PDF</a>
+                                <a class="dropdown-item" href="#" *ngIf="gridResult.length!==0">Excel</a>
+                                <a class="dropdown-item" href="#" *ngIf="(gridResult.length!==0) && !isClientReader">Approval Status</a>
+                                <a class="dropdown-item" href="#" *ngIf="gridResult.length!==0">Factsheet</a>
+                            </div>
+                        </div>
+
+                        <!--<div class="hidden-xs-down">-->
+                        <button type="button" class="btn" [disabled]="gridResult.length===0">Use in Email Notification</button>
+                        <button type="button" class="btn" [disabled]="gridResult.length===0">Use in Reports</button>
+                        <button type="button" class="btn" (click)="goToCarrierFavorites()">Carrier Favorites</button>
+                        <button type="button" class="btn" *ngIf="gridResult.length!==0">Print Detail</button>
+                        <button type="button" class="btn" *ngIf="(gridResult.length!==0) && !isClientReader">TOBA Status</button>
+                        <button type="button" class="btn" *ngIf="gridResult.length!==0">FATCA Compliance</button>
+                        <!--</div>-->
+                    </div>
+                    <div class="btn-group" role="group" arialabel="Button group with nested dropdown" *ngIf="gridResult.length===0">
+                        <!--<div class="hidden-xs-down">-->
+                        <button type="button" class="btn" [disabled]="gridResult.length===0">Use in Email Notification</button>
+                        <button type="button" class="btn" [disabled]="gridResult.length===0">Use in Reports</button>
+                        <button type="button" class="btn" (click)="goToCarrierFavorites()">Carrier Favorites</button>
+                        <button type="button" class="btn" *ngIf="gridResult.length!==0">Print Detail</button>
+                        <button type="button" class="btn" *ngIf="(gridResult.length!==0) && !isClientReader">TOBA Status</button>
+                        <button type="button" class="btn" *ngIf="gridResult.length!==0">FATCA Compliance</button>
+                        <!--</div>-->
+                    </div>
+                    <!-- <div class="" *ngIf="isTableSelected">
+            <div class="col-md-12  col-sm-12">
+              <div class="row">
+                <div class="col-md-1 col-sm-12"></div>
+                <div class="col-md-4 col-sm-4 ">
+                  <sub style="vertical-align:bottom">Match Type (P) Previous Name (S) Short Name</sub>
+                </div>
+                <div class="col-md-1 col-sm-12"></div>
+                <div class="col-md-2 col-sm-2">
+                  <sub style="vertical-align:bottom">Ratings Information</sub>
+                </div>
+                <div class="col-md-1 col-sm-12"></div>
+                <div class="col-md-3 col-sm-4">
+                  <sub style="vertical-align:bottom">Financial Information in USD millions</sub>
+                </div>
+              </div>
+            </div>
+          </div> -->
+                    <div class="" *ngIf="(gridResult.length!==0)">
+                        <div class="" *ngIf="isTableSelected">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th width="1%"> </th>
+                                                    <th width="6%"></th>
+                                                    <th width="42%">
+                                                        <sub style="vertical-align:bottom">Match Type (P) Previous Name (S) Short Name</sub>
+                                                    </th>
+                                                    <th width="25%"><sub style="vertical-align:bottom">Ratings Information</sub></th>
+
+                                                    <th width="45%"><sub style="vertical-align:bottom">Financial Information in USD millions</sub></th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="" *ngIf="(gridResult.length!==0)">
+            <div class="" *ngIf="isTableSelected">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <ag-grid-angular #agGrid style="width: 100%; height: 600px;" class="ag-fresh" [gridOptions]="gridOptions">
+                        </ag-grid-angular>
+                        <!--<div class="table-responsive table-container table-striped">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th width="1%">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" id="c1" name="cb" [disabled]="gridResult.length===0" 
+                          (click)="selectAllRowsClick()" [(ngModel)]="selectAllRows">
+                      </label>
+                      </div>
+                    </th>
+                    <th width="5%">Legal Name</th>
+                    <th width="5%">Match Type</th>
+                    <th width="5%">Country</th>
+                    <th width="5%">State</th>
+                    <th width="5%">Company Type</th>
+                    <th width="5%">WTW Code</th>
+                    <th width="5%">LORS Code</th>
+                    <th width="5%">NAIC Code</th>
+                    <th width="5%">FEIN/AIIN Code</th>
+                    <th width="5%">A.M. BEST</th>
+                    <th width="5%">S&P</th>
+                    <th width="5%">Moody's</th>
+                    <th width="5%">Fitch</th>
+                    <th width="5%">PHF / SHF Capacity</th>
+                    <th width="5%">As at Date</th>
+                    <th width="5%">NWP</th>
+                    <th width="4%">Combined Ratio %</th>
+                    <th width="5%" *ngIf="!isClientReader">Approval Status</th>
+                    <th width="3%" *ngIf="!isClientReader">Sanction Status</th>
+                    <th width="5%" *ngIf="!isClientReader">TOBA End date</th>
+                    <th width="1%" *ngIf="!isClientReader">TOBA Indicator</th>
+                    <th width="1%">FATCA Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of gridResult;let i=index;">
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                                              <input type="checkbox" id="c2" name="cb" [(ngModel)]="row.select">
+                                             
+                        </label>
+                    </div>
+                    </td>
+                    <td (click)="naviagateToCarrierDetail(i)"><a class="text-primary hand-pointer">{{row.LegalName}}</a></td>
+                    <td>{{row.MatchType}}</td>
+                    <td>{{row.Country}}</td>
+                    <td>{{row.State}}</td>
+                    <td>{{row.CompanyType}}</td>
+                    <td>{{row.WillisCode}}</td>
+                    <td>{{row.LorsCode}}</td>
+                    <td>{{row.NaicCode}}</td>
+                    <td>{{row.FeinCode}}</td>
+                    <td>{{row.AMBest}}</td>
+                    <td>{{row.SnP}}</td>
+                    <td>{{row.Moodys}}</td>
+                    <td>{{row.Fitch}}</td>
+                    <td>{{row.PHSCapacity}}</td>
+                    <td>{{row.AsAtDate| date:'MMM dd yyyy'}}</td>
+                    <td>{{row.NWP}}</td>
+                    <td>{{row.CombinedRatioPercentage}}</td>
+                    <td *ngIf="!isClientReader">{{row.ApprovalStatus}}</td>
+                    <td *ngIf="!isClientReader">{{row.SanctionStatus}}</td>
+                    <td *ngIf="!isClientReader">{{row.TOBAEndDate}}</td>
+                    <td *ngIf="!isClientReader">{{row.TOBAIndicator}}</td>
+                    <td>{{row.FATCAStatus}}</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="col-md-12 col-sm-12">
+    <div class="divClass row" *ngIf="isSuccess">
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!saveSuccess">
+        <span aria-hidden="true">&times;</span>
+      </button>
+                <span class="alert-text">{{message}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divClass row" *ngIf="isError">
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!isError">
+        <span aria-hidden="true">&times;</span>
+      </button>
+                <span class="alert-text">{{message}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

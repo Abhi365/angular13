@@ -1,0 +1,365 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="divClass p-top-bottom">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <h6 class="text-gray-light d-inlineblock">Carrier Favorites Category</h6>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <button type="button" class="btnOne btn btn-primary" data-toggle="modal" 
+            data-target="#showSelectCreationModal">New Category</button>
+          </div>
+        </div>
+        <div class="row p-top">
+          <div class="col-md-12 col-sm-12">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <!-- <select class="form-control nice-small" name="categories" [(ngModel)]="value" (ngModelChange)="onCategoryChange($event)">
+                  <option [value]="createdCategory">{{createdCategory}}</option>
+                  <option [value]="xxCategory">{{createdCategory}}(MSD)</option>
+                </select> -->
+                <select class="form-control nice-small" name="categories" [ngModel]="selectedCategory" (ngModelChange)="onCategoryChange($event)">
+                  <option value=""></option>
+                  <option *ngFor="let category of categories; let i=index;" [ngValue]="category">{{category.categoryName}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-12 col-xs-12">
+              <button type="button" class="btn btn-secondary p-button-top" data-toggle="modal" 
+              data-target="#editCategoryModal">Edit</button>
+            </div>
+            <div class="col-md-1 col-sm-12 col-xs-12">
+              <button type="button" class="btn btn-secondary p-button-top" (click)="deleteCategory()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 hr-padding hidden-sm-down">
+      <hr/>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 hr-padding-mobile hidden-sm-up">
+      <hr/>
+    </div>
+  </div>
+  <!-- showFavoritesCreationModal-->>
+  <div class="modal fade" role="dialog" aria-labelledby="Show Select Mode" aria-hidden="true" id="showFavoritesCreationModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title">New Group </h5>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row ">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="createNewClient">Name</label>
+                  <input type="text" class="form-control" id="favorite" 
+                  [(ngModel)]='favorite' name='favorite'>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer hidden-sm-down">
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal"
+            (click)="saveCarrierFavorite()">Save</button>
+        </div>
+        <div class="modal-footer hidden-md-up">
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal"
+            (click)="saveCarrierFavorite()">Save</button>
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- showSelectCreationModal -->
+  <div class="modal fade" role="dialog" aria-labelledby="Show Select Mode" aria-hidden="true" id="showSelectCreationModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <h5 class="modal-title">Create New</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row ">
+              <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-check display-4">
+                  <label class="form-check-label bold left-pad">
+                      <input class="form-check-input" type="radio"
+                             name="exampleRadios"id="exampleRadios1" value="CreateNew">
+                      Create New
+                    </label>
+                </div>
+              </div> -->
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="createNewClient">Name</label>
+                  <input type="text" class="form-control" id="categoryName" [(ngModel)]='categoryName' name='categoryName'>
+                </div>
+              </div>
+              <!-- <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-check">
+                  <label class="form-check-label font-weight-bold left-pad">
+                      <input class="form-check-input" type="radio"
+                             name="exampleRadios"id="exampleRadios1" value="SelectFromExisting">
+                      Select From Existing
+                    </label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="selectExistingClient">Name</label>
+                  <select class="form-control nice-small" id="selectExistingClient">
+                      <option value="New (Client)">New (Client)</option>
+                    </select>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer hidden-sm-down">
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+          <!-- <button type="button" class="btn btn-primary p-button-top " 
+          data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal"
+            (click)="saveCategory()">Save</button> -->
+            <button type="button" class="btn btn-primary p-button-top"  (click)="saveCategory()" data-dismiss="modal">
+              Save</button>
+        </div>
+        <div class="modal-footer hidden-md-up">
+          <button type="button" class="btn btn-primary p-button-top" (click)="saveCategory()" data-dismiss="modal">Save</button>
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- showSuccessModal -->
+  <div class="modal fade" *ngIf="isShowSuccessModal" role="dialog" aria-labelledby="Show Select Mode" aria-hidden="true" id="showSuccessModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body modal-end-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <p class=" text-center modal-text">Record Successfully Saved</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer ">
+          <button type="button" class="btn btn-primary p-button-top" data-dismiss="modal">Okay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- editCategoryModal -->
+  <div class="modal fade" role="dialog" aria-labelledby="Show Select Mode" aria-hidden="true" id="editCategoryModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          <h5 class="modal-title">Edit Category</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="createNewClient">Name</label>
+                  <input type="text" class="form-control" id="selectedCategoryId" [(ngModel)]='selectedCategoryName' name='selectedCategoryName'>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer hidden-sm-down">
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal"
+            (click)="updateCategory()">Save</button>
+        </div>
+        <div class="modal-footer hidden-md-up">
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal"
+            (click)="updateCategory()">Save</button>
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- editFavoriteModal -->
+  <div class="modal fade" role="dialog" aria-labelledby="Show Select Mode" aria-hidden="true" id="editFavoriteModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+          <h5 class="modal-title">Edit Favorite</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="editFav">Name</label>
+                  <input type="text" class="form-control" id="selectedFavoriteId" [(ngModel)]='selectedFavoriteName' name='selectedFavoriteName'>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer hidden-sm-down">
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal"
+          (click)="updateCarrierFavorite()">Save</button>
+        </div>
+        <div class="modal-footer hidden-md-up">
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal"
+          (click)="updateCarrierFavorite()">Save</button>
+          <button class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--Category Start -->
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="divClass">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <h6 class="text-gray-light d-inlineblock">Category : {{createdCategory}} </h6>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <button type="button" class="btnOne btn btn-primary" data-toggle="modal" data-target="#showFavoritesCreationModal">New Favorite</button>
+          </div>
+        </div>
+        <div class="row p-top">
+          <div class="col-md-12 col-sm-12">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <select class="form-control nice-small" name="favorites" [ngModel]="favorite" (ngModelChange)="onCarrierFavoriteChange($event)">
+                      <option value=""></option>
+                      <option *ngFor="let favorite of favorites; let j=index;" [ngValue]="favorite">{{favorite.favoriteName}}</option>
+                    </select>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-12 col-xs-12">
+              <!-- <button type="button" class="btn btn-secondary p-button-top " disabled (click)="updateCategory()">Edit</button> -->
+              <button type="button" class="btn btn-secondary p-button-top"  data-toggle="modal" data-target="#editFavoriteModal">Edit</button>
+            </div>
+            <div class="col-md-1 col-sm-12 col-xs-12">
+              <button type="button" class="btn btn-secondary p-button-top" (click)="deleteCarrierFavorite()">Delete</button>
+            </div>
+            <!-- <div class="col-md-1 col-sm-12 col-xs-12">
+              <button type="button" class="btn btn-secondary p-button-top " disabled>Add to Category</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="divClass">
+        <div class="row">
+          <div class="col-md-1 col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-secondary p-button-top " disabled>Add to Category</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-12 col-sm-12 col-xs-12 hr-padding hidden-sm-down">
+      <hr/>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 hr-padding-mobile hidden-sm-up">
+      <hr/>
+    </div>
+  </div>
+  <!--Add to Category Start -->
+  <div class="modal fade example-modal-sm" role="dialog" aria-labelledby="Show Category" aria-hidden="true" id="showCategoryModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <h4 class="modal-title">Add to Category</h4>
+        </div>
+        <div class="modal-body bottom-zero-padding">
+          <div class="modal-p-top-bottom">
+            <div class="row ">
+              <div class="col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label for="selectCategory">Category</label>
+                  <select class="form-control nice-small" id="selectCategory">
+                      <option value="New (Client)">New (Client)</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer top-zero-padding hidden-sm-down">
+          <button type="button" class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal">Save Changes</button>
+        </div>
+        <div class="modal-footer top-zero-padding hidden-md-up">
+          <button type="button" class="btn btn-primary p-button-top " data-toggle="modal" data-dismiss="modal" data-target="#showSuccessModal">Save Changes</button>
+          <button type="button" class="btn btn-secondary p-button-top" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="divClass">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <h6 class="text-gray-light d-inlineblock">{{createdFavorite}} (MSD)</h6>
+          </div>
+        </div>
+        <div class="row p-top hidden-sm-down">
+          <div class="col-md-12 col-sm-12">
+            <div class="col-md-2 col-sm-12 col-xs-12">
+              <button type="button" class="btn btn-secondary p-button-top ">Add Carriers</button>
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12 shift-left">
+              <button type="button" class="btn btn-secondary p-button-top  extra-left">Remove</button>
+            </div>
+          </div>
+        </div>
+        <div class="row p-top hidden-md-up">
+          <div class="col-md-12 col-sm-12">
+            <div class="col-md-1 col-sm-12 col-xs-12">
+              <button type="button" class="btn btn-secondary p-button-top ">Add Carriers</button>
+            </div>
+            <div class="col-md-1 col-sm-12 col-xs-12">
+              <button type="button" class="btn btn-secondary p-button-top ">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--Legal Table -->
+  <div class="row" *ngIf="showTable">

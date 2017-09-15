@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 hidden-md-up note-mobile">
+        <div class="p-top-bottom p-left-right">
+            <div class="card card-block bg-software-gray-1 ">
+                <h4 class="card-title  display-4">Note</h4>
+                 <p class="card-text">
+                     <li><a>Active agency ratings reference. </a></li>
+                     <li><a>Not for comparitive purposes</a></li>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-sm-8 p-top-bottom">
+        <div class="table-responsive table-containers">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>A.M. Best</th>
+                    <th>S & P</th>
+                    <th>Moody's</th>
+                    <th>Fitch</th>
+                    </tr>
+            </thead>
+                    <tbody>
+                        <tr *ngFor="let ratingAgencyScaleSummary of ratingAgencyScaleSummaryList; let i=index">
+                            <td>{{ratingAgencyScaleSummary.AMBest}}</td>
+                            <td>{{ratingAgencyScaleSummary.SP}}</td>
+                            <td>{{ratingAgencyScaleSummary.Moody}}</td>
+                            <td>{{ratingAgencyScaleSummary.Fitch}}</td>
+                        </tr>
+                    </tbody>
+            </table>
+            </div>
+    </div>
+    <div class="col-md-4 col-sm-4 hidden-xs-down">
+        <div class="p-top-bottom p-left-right">
+            <div class="card card-block bg-software-gray-1 ">
+            <h4 class="card-title display-4">Note</h4>
+                <p class="card-text">
+                    <li><a>Active agency ratings reference.</a></li>
+                    <li><a>Not for comparitive purposes</a></li>
+                    <li><br/><br/></li>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

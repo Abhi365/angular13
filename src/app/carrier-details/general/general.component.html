@@ -1,0 +1,703 @@
+<div class="hidden-xs-down">
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <h4 class="text-gray-light secondary">Contact Details</h4>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <button type="button" class="btn btn-primary btn-cd float-xs-right">Export to PDF</button>
+            <button type="button" class="btn btn-secondary btn-cd float-xs-right" (click)="getWillisShortNames()" data-toggle="modal"
+                data-target=".willisShortNamesModal">WTW Short Names</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="float-xs-right">Country</th>
+                            <td>{{country}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">State</th>
+                            <td>{{state}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">Type</th>
+                            <td>{{type}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">Group</th>
+                            <td>
+                                <a class="hover" href (click)="Ownership()">
+                                    <u>{{group}}</u>
+                                </a>
+                                <!-- <a><u>{{group}}</u></a> -->
+                            </td>
+                        </tr>
+                        <tr *ngIf="carrierMainEntityParId === 'undefined'">
+                            <th class="float-xs-right"><a class="hover" (click)="refresh()">Main Entity</a></th>
+                            <td>{{carrierMainEntity}}</td>
+                        </tr>
+                        <tr *ngIf="carrierMainEntityParId !== 'undefined'">
+                            <th class="float-xs-right">Main Entity</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">Established Date</th>
+                            <td>{{establishedDate}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">Operating Category</th>
+                            <td>{{operatingCategory}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">Organization Type</th>
+                            <td>{{organizationType}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">WTW Contact</th>
+                            <td>{{marketSecurityContact}}</td>
+                        </tr>
+
+                        <tr>
+                            <th class="float-xs-right">WTW Analyst</th>
+                            <td>{{marketSecurityAnalyst}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">Comments</th>
+                            <td>{{comments}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="float-xs-right"> WTW</th>
+                            <td> {{willis}} </td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right"> FEIN</th>
+                            <td>{{fein}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">NAIC</th>
+                            <td>{{naic}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">LORS</th>
+                            <td>{{lors}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">FET Ind</th>
+                            <td>{{fetInd}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">FATCA Status</th>
+                            <td>{{fatcaComplianceStatus}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">FATCA Cert. #</th>
+                            <td>{{fatcaCertificateNumber}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">FATCA Ent. Type</th>
+                            <td>{{fatcaEntityType}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">TOBA</th>
+                            <td>{{tobaIndicator}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">TOBA Type</th>
+                            <td *ngIf="tobaIndicator === 'Y'"> {{legalEntity}}:{{tobaType}}</td>
+                            <td *ngIf="tobaIndicator === 'N'"> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <div class="table-responsive">
+
+                <table class="table">
+                    <tbody>
+                        <tr *ngIf="n1==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add1}}" target="_blank" class="hover">{{add1}}</a></td>
+                        </tr>
+                        <tr *ngIf="n1!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add1}}</td>
+                        </tr>
+                        <tr *ngIf="n2==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add2}}" target="_blank" class="hover">{{add2}}</a></td>
+                        </tr>
+                        <tr *ngIf="n2!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add2}}</td>
+                        </tr>
+                        <tr *ngIf="n3==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add3}}"target="_blank" class="hover">{{add3}}</a></td>
+                        </tr>
+                        <tr *ngIf="n3!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add3}}</td>
+                        </tr>
+                        <tr *ngIf="n4==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add4}}" target="_blank" class="hover">{{add4}}</a></td>
+                        </tr>
+                        <tr *ngIf="n4!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add4}}</td>
+                        </tr>
+                        <tr *ngIf="n5==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add5}}"t arget="_blank" class="hover">{{add5}}</a></td>
+                        </tr>
+                        <tr *ngIf="n5!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add5}}</td>
+                        </tr>
+                        <tr *ngIf="n6==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add6}}" target="_blank"  class="hover">{{add6}}</a></td>
+                        </tr>
+                        <tr *ngIf="n6!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add6}}</td>
+                        </tr>
+                        <tr *ngIf="n7==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add7}}" target="_blank" class="hover">{{add7}}</a></td>
+                        </tr>
+                        <tr *ngIf="n7!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add7}}</td>
+                        </tr>
+                        <tr *ngIf="n8==10">
+                            <th class="float-xs-right"></th>
+                            <td><a href="{{add8}}"target="_blank" class="hover">{{add8}}</a></td>
+                        </tr>
+                        <tr *ngIf="n8!=10">
+                            <th class="float-xs-right"></th>
+                            <td>{{add8}}</td>
+                        </tr>
+                        <!--
+                        <tr>
+                            <th class="float-xs-right"></th>
+                            <td>Fax : +41 58 358 40 42</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right"></th>
+                            <td>
+                                <a href="#">
+                                    <u>http://www.allianz-suisse.ch</u>
+                                </a>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <hr class="main-hr">
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <h4 class="text-gray-light">Approval Status</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="float-xs-right">
+                                {{approvalStatus}}
+                            </td>
+
+                            <td>
+                                <a class="hover" href (click)="getApprovalStatusDetails()" data-toggle="modal" data-target=".historyModal">
+                                    <u>View History</u>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-8"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12" *ngIf="x =='show' || y== 'show'">
+            <hr>
+        </div>
+        <div class="col-md-5 col-sm-4" *ngIf="x == 'show'">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="float-xs-right">
+                                Business Unit
+                            </th>
+                            <td>{{businessUnit}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-5" *ngIf="y =='show'">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="float-xs-right">Restriction</th>
+                            <td> {{restriction}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-3"></div>
+    </div>
+    <div class="divClass row">
+        <div class="col-md-12 col-sm-12">
+            <hr>
+        </div>
+        <div class="col-md-7 col-sm-4">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="float-xs-right">Qualifiers</th>
+                            <td> {{qualifiers}}</td>
+                        </tr>
+                        <tr>
+                            <th class="float-xs-right">Comments</th>
+                            <td> {{comments}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-8"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <hr class="main-hr">
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <h4 class="text-gray-light">Ratings Summary</h4>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="table-responsive table-ratings">
+                <table class="table table-new">
+                    <tr>
+                        <th style="color: black"><b>Current Ratings Agency</b></th>
+                        <th>Ratings</th>
+                        <th>Outlook</th>
+                        <th>Date</th>
+                        <th>Reference</th>
+                    </tr>
+                    <tr *ngFor="let agency of carrierRatingSummary">
+                        <td><a href>{{agency.ratingAgencyName}}</a></td>
+                        <td *ngIf="agency.ratings">{{agency.ratings}}</td>
+                        <td *ngIf="!agency.ratings">-</td>
+                        <td *ngIf="agency.outLook">{{agency.outLook}}</td>
+                        <td *ngIf="!agency.outLook">-</td>
+                        <td *ngIf="agency.date">{{agency.date}}</td>
+                        <td *ngIf="!agency.date">-</td>
+                        <td *ngIf="agency.reference">{{agency.reference}}</td>
+                        <td *ngIf="!agency.reference">-</td>
+                        <td>
+                            <a class="hover" href (click)="getCarrierRatingSummary(agency.ratingAgencyId,agency.ratingAgencyName)" data-toggle="modal"
+                                data-target=".agencyHistoryModal">
+                                <u>Ratings History</u>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <hr class="main-hr">
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <h4 class="text-gray-light">Documents</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="table-responsive table-documents">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="float-xs-right padding-bottom">
+                                    Rating Rationale
+                                </th>
+                                <td class="padding-bottom">
+                                    <u>Allianz Suisse Versicherungs-Gesellschaft AG,Switzerland,B0105,Dec 2014,S&P</u>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right border-top">
+                                    FATCA Certificate
+                                </th>
+                                <td class="border-top">
+                                    <u>Allianz Suisse Versicherungs-Gesellschaft AG,Switzerland,B0105,W-8BEN-E,Nov,17,2014</u>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right border-top">
+                                    Other
+                                </th>
+                                <td class="border-top">
+                                    <u>Audit Trail</u>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for viewing history -->
+    <div class="modal fade historyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header hidden-sm-down">
+                    <button type="button" class="close" data-dismiss="modal" arialabel="Close"> <span ariahidden="true">&times;</span> </button>
+                    <h4 class="modal-title">Approval Status Changes</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <button type="button" class="btn btn-primary float-xs-right" name="pdfButton"> PDF </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <!-- <tbody *ngFor="let status of approvalStatusResult"> -->
+                                    <tbody>
+                                        <tr>
+                                            <th>Change Description</th>
+                                            <td>{{approvalStatusAuditTrailChangeTypeDesc}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Prior Value</th>
+                                            <td>{{approvalStatusAuditTrailPriorValue}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>New Value</th>
+                                            <td>{{approvalStatusAuditTrailNewValue}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Date </th>
+                                            <td>{{approvalStatusAuditTrailEffectiveDate}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end -->
+
+    <!-- Modal Window for Agency -->
+    <div class="modal fade agencyHistoryModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header hidden-sm-down">
+                    <button type="button" class="close" data-dismiss="modal" arialabel="Close"> <span ariahidden="true">&times;</span> </button>
+                    <h4 class="modal-title">Rating Summary - History ({{ratingAgencyName}})</h4>
+                    <p>
+                        <a href>
+                            <u>Please note the applicable Disclaimers</u>
+                        </a>
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <button type="button" class="btn btn-primary float-xs-right" name="pdfButton"> PDF </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+
+                            <!-- <div class="table-responsive" *ngIf="carrierRatingSummaryResult"> -->
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Statement Year</th>
+                                            <th>Prior Value</th>
+                                            <th>New Value</th>
+                                            <th>Effective Date</th>
+                                        </tr>
+                                        <tr *ngFor="let ratingSummary of carrierRatingSummaryResult; let i=index;">
+                                            <tr>
+                                                <!-- s -->
+                                                <!-- <td>{{description}}</td>
+                                            <td>{{statementYear}}</td>
+                                            <td>{{priorValue}}</td>
+                                            <td>{{newValue}}</td>
+                                            <td>{{effectiveDate}}</td>  -->
+                                            </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <!-- Modal Window for Willis Short Names -->
+    <div class="modal fade willisShortNamesModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header hidden-sm-down">
+                    <button type="button" class="close" data-dismiss="modal" arialabel="Close"> <span ariahidden="true">&times;</span> </button>
+                    <h4 class="modal-title">WTW Short Names</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <button type="button" class="btn btn-primary float-xs-right" name="pdfButton"> PDF </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th>Business Unit</th>
+                                            <th>WTW Short Names</th>
+                                        </tr>
+                                        <!-- <tr *ngFor="let shortName of willisShortNames"> -->
+                                        <tr>
+                                            <td>{{businessUnitName}} </td>
+                                            <td>{{willisShortName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <!--Mobile Part-->
+    <div class="hidden-md-up hidden-sm-up">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <h5 class="text-gray-light secondary">Contact Details</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="float-xs-right">Country</th>
+                                <td>Switzerland</td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">State</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">Type</th>
+                                <td>Bib-Life Co.</td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">Group</th>
+                                <td>
+                                    <a class="hover" href="#">
+                                        <u>Allianz Group</u>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">Established Date</th>
+                                <td> 1894</td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">Operating Category</th>
+                                <td>Active</td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">Organization Type</th>
+                                <td>Undecided</td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">WTW Contact</th>
+                                <td> Emily Scott<br>Rory Jackson</td>
+                            </tr>
+
+                            <tr>
+                                <th class="float-xs-right">WTW Analyst</th>
+                                <td>Financial<br>Allocation Team</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr class="main-hr">
+                <h5 class="text-gray-light secondary">Approval Status</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="float-xs-right">
+                                    Restricted
+                                </td>
+                                <td>
+                                    <a class="hover" href="#">
+                                        <u>View History</u>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="float-xs-right">
+                                    Business Unit
+                                </th>
+                                <td>
+                                    Group-excl US/<br>Canadian Retail
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">
+                                    Restriction
+                                </th>
+                                <td>
+                                    Client Aware * - Regional<br>(A) business only including<br>foreign MNCs
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="float-xs-right">
+                                    Qualifiers
+                                </th>
+                                <td>
+                                    *Special fact sheet must<br>be provided A=EU<br>countries
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="float-xs-right">
+                                    Comments
+                                </th>
+                                <td>
+                                    -
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr class="main-hr">
+                <h5 class="text-gray-light secondary">Ratings Summary</h5>
+                <form>
+                    <label for="ratings" style="color: black">Current Ratings Agency</label>
+                    <select id="ratings" class="form-control">
+                      <option>A.M. Best</option>
+                      <option>Standard & Poor's</option>
+                      <option>Moody</option>
+                      <option>
+                        Fitch
+                      </option>
+                    </select>
+                </form>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-right gray-color">Ratings</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-left">NR</div>
+                </div>
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-right gray-color">Outlook</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-left">-</div>
+                </div>
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-right gray-color">Date</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-left">Sep 29,2008</div>
+                </div>
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-right gray-color">Reference</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-left">086462</div>
+                </div>
+                <button class="btn btn-block btn-primary btn-cd">Ratings History</button>
+                <hr class="main-hr">
+                <h5 class="text-gray-light secondary">Documents</h5>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-right gray-color">Rating Rationale</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-left"><a href="#">View PDF</a></div>
+                </div>
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-right gray-color">FATCA Certificate</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-left"><a href="#">View PDF</a></div>
+                </div>
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-right gray-color">Other</div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 cs-mobile-padding">
+                    <div class="float-xs-left"><a href="#">View Audit Trail</a></div>
+                </div>
+            </div>
+        </div>
+    </div>

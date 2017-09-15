@@ -1,0 +1,111 @@
+﻿<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="divClass p-top-bottom">
+
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <label for="termsofuse">Terms of Use</label>
+          <div id="richTextEditor">
+            <button id="bold"><img src="/assets/images/bold.png" /></button>
+            <button id="italic"><img src="/assets/images/italics.png" /></button>
+            <button id="underline"><img src="/assets/images/underline.png" /></button>
+            <button id="justifyCenter"><img src="/assets/images/center-justify.png" /></button>
+            <button id="justifyLeft"><img src="/assets/images/left-justify.png" /></button>
+            <button id="justifyRight"><img src="/assets/images/right-justify.png" /></button>
+            <button id="insertUnorderedList"><img src="/assets/images/bullets.png" /></button>
+            <button id="insertOrderedList"><img src="/assets/images/numbers.png" /></button>
+            <button id="subscript"><img src="/assets/images/subScript.png" /></button>
+            <button id="superscript"><img src="/assets/images/superScript.png" /></button>
+            <button id="createLink"><img src="/assets/images/link.png" /></button>
+            <button id="htmlCode"><img src="/assets/images/htmlCode.png" /></button>
+          </div>
+          <div id="export-content">
+            <div id="editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="col-md-6 col-sm-7">
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <button type="button" class="btn btn-secondary float-xs-right  custom" (click)="getHomepage()" name="cancelButton">Cancel</button>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <button type="button" class="btn btn-primary float-xs-right  custom" (click)="gettexteditorEditableforedit()" [ngClass]="{'disabled':iseditable}" name="editFirstButton">Edit</button>
+    </div>
+    <div class="col-md-2 col-sm-2">
+      <button type="button" class="btnOne btn btn-primary cs-button-top" (click)="gettexteditorEditableforsave()" [ngClass]="{'disabled':iseditable}" name="saveFirstButton">Create New Version</button>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <button type="button" class="btn btn-primary custom" (click)="saverecord()" [ngClass]="{'disabled':issave}" name="saveSecondButton">Save</button>
+    </div>
+    <div class="col-md-1 col-sm-7">
+    </div>
+  </div>
+</div>
+<div>
+</div>
+<div class="row" *ngIf="isSuccess">
+  <div class="col-md-12">
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!saveSuccess">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      <span class="alert-text">Success!</span>{{message}}
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="isError">
+  <div class="col-md-12">
+    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!isError">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      <span class="alert-text">Error!</span> {{message}}
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="isAlert">
+  <div class="col-md-12">
+    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="!isAlert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      <span class="alert-text">{{message}}</span>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="divClass p-top-bottom">
+      <label class="d-inline-block">Version History</label>
+      <div class="table-responsive table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th width="25%">Published On</th>
+              <th width="75%">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let termsofuse of termsOfUseResult; let i=index">
+              <td>{{termsofuse.PublishedOn | date:'dd/MM/yyyy'}}</td>
+              <td name="editButton">
+                <a (click)="Edittermsofuse(termsofuse.Version)" class="text-primary">{{termsofuse.TermsOfUseText}}(...)</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

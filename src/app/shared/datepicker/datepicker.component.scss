@@ -1,0 +1,81 @@
+//@import "../../../scss/global/vars";
+$date-icon-size: 18;
+
+.datepicker, .datepicker-input {
+    position: relative;
+}
+
+.icon-date {
+    width: $date-icon-size + px;
+    height: $date-icon-size + px;
+    fill: blue(lightblue);
+    position: absolute;
+    top: 50%;
+    right: .75rem;
+    margin-top: -$date-icon-size/2 + px;
+}
+
+.datepicker-calendar {
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 1rem;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+}
+
+.datepicker-controls {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.datepicker-rows {
+    text-align: center;
+    width: 100%;
+
+    th, td {
+        text-align: center;
+        padding: 0.5rem 0.25rem;
+    }
+
+    td {
+        cursor: pointer;
+
+        &:hover {
+            background: blue(lightblue);
+            color: white;
+        }
+    }
+}
+
+.offset {
+    color: #d8d8d8;
+}
+
+.chevron {
+    display: inline-block;
+
+    &:before {
+        border-style: solid;
+        border-width: 0.2em 0.2em 0 0;
+        content: '';
+        display: inline-block;
+        height: 0.75em;
+        margin: 0 0 0 0.5rem;
+        transform: rotate(-135deg);
+        width: 0.75em;
+    }
+
+    &.right {
+        margin: 0 0.5rem 0 0;
+        transform: rotate(180deg);
+    }
+}
+
+.active {
+    background-color: #01a0d2;
+    color: #fff;
+}

@@ -1,0 +1,351 @@
+<!-- Masshead Desktop -->
+<nav class="navbar navbar-light navbar-sticky-top bg-software-gray-1 hidden-sm-down">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/images/logo.svg" class="d-inline-block align-top" alt="WTW">
+    </a>
+    <span class="float-xs-right top-aligned"> <a class="hover" (click)="logout()">Signout</a></span>
+</nav>
+
+<!-- Masshead Mobile -->
+<nav class="navbar navbar-light navbar-sticky-top  bg-software-gray-1 mobile-nav hidden-md-up ">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/images/logo.svg" alt="WTW">
+    </a>
+    <span class="float-xs-right top-aligned"><a class="hover" (click)="logout()">Signout</a></span>
+</nav>
+
+<!--<app-loader-comp></app-loader-comp>-->
+<div class="container-fluid">
+    <div class="row display-flex">
+        <div class="col-md-1 col-sm-2 hidden-xs-down">
+            <!-- Admin Navigation Desktop -->
+            <div class="row" *ngIf="isAdminActive">
+                <div class="nav-w-submenu-container">
+                    <ul class="nav nav-vertical nav-vertical-dark nav-pills nav-stacked sidenav-priority ">
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="msHome" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/home.svg" alt="Market Security Admin">
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="edit-user" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 20.svg" alt="UserMaintenance">
+                                <span>Add/Edit User</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="client-maintenance" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 21.svg" alt="Client Maintenance">
+                                <span>Client Maintenance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="admin-reports" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 521.svg" alt="Reports">
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="carrier-favorites-admin" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 23.svg" alt="Carrier Favorites">
+                                <span>Carrier Favorites</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="ratings" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 24.svg" alt="Rating Scale">
+                                <span>Rating Scale</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="msgfiles" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 251.svg" alt="MISC Files">
+                                <span>MSG Files</span>
+                            </a>
+                        </li>
+                        <li id="hoverElem" #hoverElem class="nav-item" data-for="superadmin-submenu" (click)="hitme()">
+                            <a class="nav-link">
+                                <img class="dark-nav-img" src="./assets/images/Fill 26.svg" alt="Super Admin">
+                                <span>Super User Admin</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="help" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 491.svg" alt="Help">
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="activeme" #activeme class="nav-vertical-dark nav-vertical-submenu superadmin-submenu">
+                        <li (click)="hitme()">
+                            <a routerLink="disclaimers" routerLinkActive="active">
+                                <span>Manage Disclaimers</span>
+                            </a>
+                        </li>
+
+                        <li (click)="hitme()">
+                            <a routerLink="announcements" routerLinkActive="active">
+                                <span>Announcements</span>
+                            </a>
+                        </li>
+                        <li (click)="hitme()">
+                            <a routerLink="home-page-admin" routerLinkActive="active">
+                                <span>Home Page Admin</span>
+                            </a>
+                        </li>
+                        <li (click)="hitme()">
+                            <a routerLink="doc-access" routerLinkActive="active">
+                                <span>Document Access</span>
+                            </a>
+                        </li>
+                        <li (click)="hitme()">
+                            <a routerLink="doc-folder" routerLinkActive="active">
+                                <span>Document Folders</span>
+                            </a>
+                        </li>
+                        <li (click)="hitme()">
+                            <a routerLink="terms-of-use" routerLinkActive="active">
+                                <span>Manage Terms Of Use</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Client Navigation Desktop -->
+            <div class="row" *ngIf="isUserActive">
+                <div class="nav-w-submenu-container">
+                    <ul class="nav nav-vertical nav-vertical-dark nav-pills nav-stacked">
+                        <li class="nav-item" (click)="hitme()" data-for="home-submenu">
+                            <a class="nav-link" routerLink="home" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/home.svg" alt="Home">
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="carrier-search" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 45.svg" alt="Carrier Search">
+                                <span>Carrier Search</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="notification" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 461.svg" alt="Notifications">
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="carrier-doc" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 471.svg" alt="Client Documents">
+                                <span>Client Documents</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" (click)="hitme()">
+                            <a class="nav-link" routerLink="help" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Fill 491.svg" alt="Help">
+                                <span>Help</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11 col-sm-10">
+            <div class="row">
+                <!-- Main Header Desktop Start-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-sm-down ">
+                    <div class="row">
+                        <div class="bg-software-gray-1 p-1 col-md-8 col-sm-8 indexing-header ">
+                            <h2 class="display-1  left-pad hidden-sm-down">
+                                {{headervalue}}</h2>
+                        </div>
+                        <!-- Desktop Switcher -->
+                        <div class="bg-software-gray-1 p-1 col-md-4 col-sm-4 hidden-md-down pp-1">
+                            <div class="col-md-12 col-sm-12 pad-right-dropdown">
+                                <div class="float-xs-right">
+                                    <ul class="nav navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                                                {{active}}
+                                                <span class="caret"></span>
+                                                </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" (click)="activeComp($event.target.innerText)" id="{{passive}}">{{passive}}</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Desktop Switcher End -->
+                    </div>
+                </div>
+                <!-- Main Header End -->
+
+                <!-- Main Header Mobile Start -->
+                <div class="bg-software-gray-1 col-md-12 col-sm-12 col-xs-12 hidden-sm-up">
+                    <div class="row">
+                        <div id="btn-menu" class="navbar-dark col-md-12 col-sm-12 col-xs-12">
+                            <button id="menu-btn" (click)="menutoggle()" class="navbar-toggler closedtime" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar"
+                                aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="nav-mobile-text hidden-sm-up">Menu</span></button>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 p-1">
+                            <div class="collapse nav-mobile-collapse mobile-nav" id="exCollapsingNavbar">
+                                <div class="bg-white p-1">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li class="nav-item li-pad nav-pointer">
+                                            <a class="nav-link li-a-mobile-padding" (click)="activeCompMob($event.target.innerText)">
+                                                <span class="" *ngIf="isAdminActive">Market Security</span>
+                                                <span class="bold-admin-user" *ngIf="isUserActive">Market Security</span></a>
+                                        </li>
+                                        <li class="nav-item li-pad nav-pointer">
+                                            <a class="nav-link li-a-mobile-padding" (click)="activeCompMob($event.target.innerText)">
+                                                <span class="" *ngIf="isUserActive">Market Security Admin</span>
+                                                <span class="bold-admin-user" *ngIf="isAdminActive">Market Security Admin</span></a>
+                                        </li>
+                                        <li>
+                                            <hr>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav nav-pills nav-stacked" *ngIf="isAdminActive">
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="msHome" routerLinkActive="active">
+                                                <span>Home</span></a>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="edit-user" routerLinkActive="active">
+                                                <span>Add / Edit User</span></a>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="client-maintenance" routerLinkActive="active">
+                                                <span>Client Maintenance</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="carrier-favorites-admin" routerLinkActive="active">
+                                                <span>Carrier Favorites</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="ratings" routerLinkActive="active">
+                                                <span>Rating Scale</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item li-pad">
+                                            <a class="nav-link li-a-mobile-padding">
+                                                <span>MSG Files</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item dropdown" (click)="dropdownstatus()">
+                                            <a class="nav-link  appdrop dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <span class="caret"></span> Super-User Admin
+                                            </a>
+                                        </li>
+                                        <ul class="no-padding" [hidden]="!dropdownOpen">
+                                            <li class="nav-item" (click)="hitme()">
+                                                <a class="nav-link  dropdown-text-mobile" routerLink="disclaimers" routerLinkActive="active">
+                                                    <span>Manage Disclaimers</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" (click)="hitme()">
+                                                <a class="nav-link  dropdown-text-mobile" routerLink="announcements" routerLinkActive="active">
+                                                    <span>Announcements</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" (click)="hitme()">
+                                                <a class="nav-link  dropdown-text-mobile" routerLink="home-page-admin" routerLinkActive="active">
+                                                    <span>Home Page Admin</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" (click)="hitme()">
+                                                <a class="nav-link  dropdown-text-mobile" routerLink="doc-access" routerLinkActive="active">
+                                                    <span>Document Access</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" (click)="hitme()">
+                                                <a class="nav-link  dropdown-text-mobile" routerLink="doc-folder" routerLinkActive="active">
+                                                    <span>Document Folders</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" (click)="hitme()">
+                                                <a class="nav-link  dropdown-text-mobile" routerLink="terms-of-use" routerLinkActive="active">
+                                                    <span>Manage Terms Of Use</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <li>
+                                            <hr>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="help" routerLinkActive="active">
+                                                <span>Help</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav nav-pills nav-stacked" *ngIf="isUserActive">
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="home" routerLinkActive="active">
+                                                <span>Home</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="carrier-search" routerLinkActive="active">
+                                                <span>Carrier Search</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="notification" routerLinkActive="active">
+                                                <span>Notifications</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="carrier-doc" routerLinkActive="active">
+                                                <span>Client Documents</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr>
+                                        </li>
+                                        <li class="nav-item li-pad" (click)="hitme()">
+                                            <a class="nav-link li-a-mobile-padding" routerLink="help" routerLinkActive="active">
+                                                <span>Help</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 hidden-md-up">
+                            <h5 class="display-4 d-inline-block left-pad">
+                                {{headervalue}}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+
+<app-loader-comp class="overlay-wrapper" *ngIf="isLoading"></app-loader-comp>
+<!--<div class="overlay">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="container p-bottom">
+                <img src="/assets/images/AnimationLoading.gif" alt="Loading" class="mx-auto d-block" />
+            </div>
+        </div>
+    </div>
+</div>-->
